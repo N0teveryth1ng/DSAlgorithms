@@ -106,4 +106,6 @@ def pattern10(n):
 # pattern10(5)
 
 
+# 11 - 
 
+    
