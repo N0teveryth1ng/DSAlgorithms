@@ -106,6 +106,31 @@ def pattern10(n):
 # pattern10(5)
 
 
-# 11 - 
+def euclid_gcd(a, b):
+    while b != 0:
+        a, b = b, a % b
+    return a
 
+# Example
+# print("GCD is:", euclid_gcd(48, 18))  # Output should be: GCD is: 6
+
+# import math 
+# x = 4
+# count = []
+# x = abs(x)
+        
+# for i in range(1, math.sqrt(x)):
+#     if x % i == 0 and x // i == 0:
+#         count.append(i)
     
+# print(count)
+
+
+# Recursion
+def rec(maxs, current=1):
+    if current >= maxs:
+        return current
+    print('soham')
+    rec(maxs, current + 1)
+    
+# rec(10)
