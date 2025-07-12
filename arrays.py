@@ -134,3 +134,6 @@ def rec(maxs, current=1):
     rec(maxs, current + 1)
     
 # rec(10)
+
+
+
