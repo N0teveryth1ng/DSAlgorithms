@@ -230,4 +230,42 @@ def check(s,t):
         
    return True
         
-print(check(s,t))   
+# print(check(s,t))   
+
+
+
+
+
+
+# - - - - - - division method - array hashing - - - - - - - 
+arr = [2,3,4,5,6,7,8,8,9,45,74,89,98]
+table_size = 10
+hash_table = {i: [] for i in range(table_size)}
+
+# storing
+def insert(items):
+    for i in items:
+       hash_key = i % table_size 
+       bucket = hash_table[hash_key]  # chaining for prevening collisions
+       
+       bucket.append(i)
+    
+    
+# retrieing / searching
+def search(n): 
+    hash_key = n % table_size 
+    bucket = hash_table[hash_key]
+    return n in bucket
+
+
+insert(15)
+
+
+
+# - - - - - - -  Folding method - Arrau hashing - - - - - - - >
+
+
+
+
+
+
