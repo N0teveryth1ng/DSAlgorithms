@@ -211,6 +211,8 @@ def check(Input):
    
 # print(check(Input))      
 
+
+
 # anagram check
 s = "listen"
 t = "silent"
@@ -237,35 +239,60 @@ def check(s,t):
 
 
 
+
+
+
+
+
 # - - - - - - division method - array hashing - - - - - - - 
-arr = [2,3,4,5,6,7,8,8,9,45,74,89,98]
+
+# Array hashing with sorting elements
+arr = [2,3,4,5,5,5,5,6,7,8,8,8,8,8,8,9,45,74,89,98]
 table_size = 10
 hash_table = {i: [] for i in range(table_size)}
 
 # storing
-def insert(items):
-    for i in items:
-       hash_key = i % table_size 
-       bucket = hash_table[hash_key]  # chaining for prevening collisions
-       
-       bucket.append(i)
-    
-    
-# retrieing / searching
+def store(arr):
+  for i in arr:  
+     hash_key = i % table_size
+     bucket = hash_table[hash_key] # prevent collision
+     
+     bucket.append(i)
+     
+
+# searching
 def search(n): 
-    hash_key = n % table_size 
+    hash_key = n % table_size
     bucket = hash_table[hash_key]
     return n in bucket
 
-
-insert(15)
-
-
-
-# - - - - - - -  Folding method - Arrau hashing - - - - - - - >
+store(arr)
+store([37])
 
 
+# sorting
+frequency = {}
 
-
-
-
+for bucket in hash_table.values():
+    for i in bucket:
+        if i in frequency:
+            frequency[i] += 1
+        else:
+            frequency[i] = 1
+       
+if not frequency:
+    print(" not in the table")
+else:
+    
+    max_freq = max(frequency.values())
+    min_freq = min(frequency.values())
+    
+    highest_freq = [i for i,j in frequency.items() if j == max_freq]
+    lowest_freq = [i for i,j in frequency.items() if j == min_freq]
+    
+    print("freqs elems are : ", frequency)
+    print("highest highs: ", highest_freq, "max freqs: ", max_freq)
+    print("lowest lows: ", lowest_freq, "min freqs: ", min_freq)
+    
+    
+    
