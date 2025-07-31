@@ -15,15 +15,35 @@ def largest_elem(arr):
 # largest_elem(arr)            
 
 
-# second largest element withut sorting
-def sec_largest_elem(arr):
-    n = len(arr)
-    large = arr[n-1]
-    
-    for i in range(n):
-        if arr[i] > large:
-            large = arr[i]
-    print(large) 
-    
-sec_largest_elem(arr)   
 
+# second largets element of an array     
+def secs():
+  
+   arr = [3,4,5,3,4,5,8,9]
+   
+   largest = arr[0]
+   slargest = -1 
+   
+   for i in arr:
+       if i > largest:
+           slargest = largest
+           largest = i
+       elif i > slargest and i < largest:
+           slargest = i
+           
+   print("seconf - ",slargest)
+
+# secs()                
+
+def check(arr):
+   n = len(arr)
+   for i in range(1,n):
+       if arr[i] < arr[i-1]:
+           print('not sorted')
+           return False
+           
+   print('sorted')        
+   return True   
+
+
+check(arr)
