@@ -109,7 +109,69 @@ def right_rot():
    arr[0] = temp
    return arr
 
-print(right_rot()) 
+# print(right_rot()) 
+              
        
+# Left rotate array by D places  - - - - -[ Right rotate is bit hard for me to understand ]
+def left_d():
+    
+    arr = [1,2,3,4,5,6,7]
+    n = len(arr)
+    d = 3
+    temp = []
+    
+    for i in range(d):
+        temp.append(arr[i])
+        
+    for i in range(d, n):
+        arr[i-d] = arr[i]
+        
+    for i in range(d):
+        arr[n-d + i] = temp[i]
+            
+    print(arr)
+    
+# left_d()        
+
+
+
+# last the zero nums in an arr
+def non_zero(): # - - - - - - most efficient approach
+    arr = [1,2,3,0,5,0,5,3,0,9,6,5]
+    n = len(arr)
+    pos = 0
+    
+    for i in range(n):
+        if arr[i] != 0:
+            arr[pos] = arr[i]
+            pos += 1
+            
+    for i in range(pos,n):            
+       arr[i] = 0
+      
+    return arr
+        
+        
+# print(non_zero())
+
+
+# brute force method of sending 0s to end
+def brute(): # - - - - - -Not mmost efficeint 
+   
+   arr = [1,2,0,3,4,0,0,5,4,0]
+   n = len(arr)
+   temp = []
+   
+   for i in range(n):
+       if arr[i] != 0:
+           temp.append(arr[i])
+   
+   for i in range(len(temp)):
+       arr[i] = temp[i]
        
+   for i in range(len(temp), n):
+       arr[i] = 0
        
+   return arr
+
+# print(brute())
