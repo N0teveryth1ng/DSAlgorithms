@@ -148,6 +148,7 @@ def non_zero(): # - - - - - - most efficient approach
             
     for i in range(pos,n):            
        arr[i] = 0
+       
       
     return arr
         
@@ -156,7 +157,7 @@ def non_zero(): # - - - - - - most efficient approach
 
 
 # brute force method of sending 0s to end
-def brute(): # - - - - - -Not mmost efficeint 
+def brute(): # - - - - - - Not mmost efficeint 
    
    arr = [1,2,0,3,4,0,0,5,4,0]
    n = len(arr)
@@ -175,3 +176,41 @@ def brute(): # - - - - - -Not mmost efficeint
    return arr
 
 # print(brute())
+
+
+# Linear search - - - - - - - - [Easy as hell]
+def linear_search():
+    arr = [1,2,3,4,5,6]
+    n = len(arr)
+    
+    for i in range(n):
+        if arr[i] == 5:
+            return i
+            
+    return arr
+
+# print(linear_search())
+    
+    
+# UNION FIND - - - - - - [Brute force method]
+def union():
+    
+    arr1 = [1,2,3,3,4]
+    arr2 = [3,4,5,5,6,3]
+    
+    sets = []
+    
+    for i in arr1:
+      if i not in sets:    
+        sets.append(i)
+        
+    for i in arr2:
+      if i not in sets: 
+        sets.append(i)
+        
+    return sets
+
+# print(union())
+
+
+# 
