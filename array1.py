@@ -1,5 +1,5 @@
 # global array
-arr = [1,2,3,5,6,7,8,4]
+# arr = [1,2,3,5,6,7,8,4]
 # arr = [3,3,4,5,6,6,8,8,9]
 
 # Largest element in a array - - - - - - - - - >
@@ -63,7 +63,7 @@ def check_dups(arr):
     
     return j + 1
 
-length = check_dups(arr)
+# length = check_dups(arr)
 # print(arr[:length])
 
 # optimal approach but takes high space [not good for DSA]
@@ -213,4 +213,159 @@ def union():
 # print(union())
 
 
-# 
+# using 2 pointers in array - - - - - -[still unclear will see onward]
+
+def pointer():
+    
+    arr1 = [1,2,3,3,4]
+    arr2 = [3,4,5,5,6,3]
+    
+    n1 = len(arr1)
+    n2 = len(arr2)
+    
+    i,j = 0,0
+    
+    union = []
+    
+    while i < n1 and j < n2:
+        if len(union) > 0 and union[-1] == arr1[i]:
+            i += 1 
+            continue
+        
+        if len(union) > 0 and union[-1] == arr2[j]:
+            j += 1
+            continue
+        
+        
+        
+        
+        if arr1[i] < arr2[j]:
+            union.append(arr1[i])
+            i += 1
+            
+        elif arr2[j] > arr1[i]:
+            union.append(arr2[j])
+            j += 1
+            
+        else:
+            union.append(arr1[i])
+            i += 1
+            j += 1
+            
+        
+    while i < n1:
+            if len(union) == 0 or union[-1] != arr1[i]:
+                union.append(arr1[i])
+            i += 1
+            
+    while j < n2:
+            if len(union) == 0 or union[-1] != arr2[j]:
+                union.append(arr2[j])
+            j += 1
+            
+    return union
+    
+# print(pointer())
+
+# brute force method of mising num from 1 to N
+def find_num1():
+    arr = [1,2,4,5]
+    n = len(arr)
+    
+    for i in range(n+1):
+        if i not in arr:
+            return i 
+        
+    return arr
+
+# print(find_num1())        
+        
+
+def find_num(): # better approach method [ takes 2700 ms ]
+    
+    arr = [1,2,4,5]
+    n = len(arr) 
+    num_set = set(arr)
+    
+    for i in range(1, n+1):
+        if i not in num_set:
+            return i
+            
+    return arr
+
+# print(find_num())  
+
+
+def xor(arr): # - - - - - 10 ms delay
+    
+    n = len(arr)
+    
+    xor1 = 0
+    for i in range(n+1):      
+        xor1 = xor1 ^ i
+        
+    xor2 = 0
+    for i in arr:
+        xor2 = xor2 ^ i 
+        
+    return xor1 ^ xor2
+
+arr = [1,2,4,5]
+# print(xor(arr))
+
+
+# find the consecutive of all
+def consec():
+    arr = [1,1,1,0,1,1,0,1,1,1,1]
+    n = len(arr)
+    maxi = 0    
+    count = 0
+    
+    for i in range(n):
+        if arr[i] == 1:
+            count += 1
+            maxi  = max(maxi, count)
+            
+        else:
+            count = 0
+            
+    return maxi
+
+
+# print(consec())
+            
+# every num appears twice sort the one appearance num 
+
+def twice_appear():
+    arr = [1,1,2,2,3,4,4,5,5]
+    
+    n = len(arr)
+    cnt = {}
+    
+    for i in arr:
+        if i in cnt:
+            cnt[i] += 1
+        else:
+            cnt[i] = 1
+            
+    
+    for i in cnt:
+        if cnt[i] == 1:
+            return i
+
+# print(twice_appear())
+        
+    
+def remove_elems():
+    arr = [1,1,3,4,5,6,7,3,3]
+    n = len(arr)
+    val = 3
+    temp = []
+    for i in arr:
+        if arr[i] != val:
+            temp.append(i)
+        
+    return temp
+
+print(remove_elems())
+            
