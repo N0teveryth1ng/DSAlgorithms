@@ -32,7 +32,7 @@ def test(): # - - - - - - - - optimal apppaoch
 
 
 
-# [sort colors in LC - 0,1,2]
+# [sort colors in LC - 0,1,2] - - - [DNF algorithm]
 def array():
     arr = [2,2,2,2,1,1,1,1,0,0,0,0]
     
@@ -81,4 +81,49 @@ def majority():
 
 # print(majority())
             
-                       
+                   
+                   
+def kadane():
+    
+    arr = [-2,1,-3,4,-1,2,1,-5,4]
+    n = len(arr)
+    maxi = float('-inf')
+    
+    for i in range(n):
+        for j in range(i,n):
+            sum = 0
+            for k in range(i,j+1):
+                sum += arr[k]
+            maxi = max(maxi, sum)
+                
+    return maxi
+
+# print(kadane())    
+    
+def kadanes():
+    arr = [-2,1,-3,4,-1,2,1,-5,4]
+    current_sum = 0
+    max_sum = float('-inf')
+    
+    for i in arr:
+        current_sum = max(i, current_sum + i)
+        
+        max_sum = max(max_sum, current_sum)
+        
+    return max_sum
+        
+# print(kadanes())
+
+def simplest(arr):
+    
+    current_sum = arr[0]
+    max_sum = arr[0]
+    
+    for i in arr[1:]:
+        
+        current_sum = max(i, current_sum + i)
+        max_sum = max(max_sum, current_sum)
+        
+    return max_sum
+
+print(simplest([-2,1,-3,4,-1,2,1,-5,4]))
