@@ -82,24 +82,8 @@ def majority():
 # print(majority())
             
                    
-                   
-def kadane():
-    
-    arr = [-2,1,-3,4,-1,2,1,-5,4]
-    n = len(arr)
-    maxi = float('-inf')
-    
-    for i in range(n):
-        for j in range(i,n):
-            sum = 0
-            for k in range(i,j+1):
-                sum += arr[k]
-            maxi = max(maxi, sum)
-                
-    return maxi
-
-# print(kadane())    
-    
+                    
+# kadane's algo - - - [contingeous subarray]
 def kadanes():
     arr = [-2,1,-3,4,-1,2,1,-5,4]
     current_sum = 0
@@ -126,4 +110,81 @@ def simplest(arr):
         
     return max_sum
 
-print(simplest([-2,1,-3,4,-1,2,1,-5,4]))
+# print(simplest([-2,1,-3,4,-1,2,1,-5,4]))
+
+
+# DP on stocks
+
+def stocks():
+    
+    arr = [7,1,5,3,6,4]
+    n = len(arr)
+    
+    min_price = arr[0]
+    max_profit = 0
+    
+    for i in range(1,n):
+        
+        cost = arr[i] - min_price
+        max_profit = max(cost, max_profit)
+        
+        min_price = min(min_price, arr[i])
+         
+    return max_profit
+
+# print(stocks())
+
+
+def test():   # MORE better way to undertand stock DP
+    
+    arr = [7,1,5,3,6,4]
+    n = len(arr)
+    
+    min_price = arr[0]  # assume 1st elem as lowest
+    max_profit = 0
+    
+    # find the lowest price
+    for i in range(n):
+       if arr[i] < min_price:
+           min_price = arr[i]
+           
+       profit = arr[i] - min_price   # profit = sell price - buy price     
+        
+        # if find better price then sell it
+       if profit > max_profit:
+           max_profit = profit
+           
+    return max_profit
+
+# print(test()) 
+
+
+def rearrange():
+    arr = [1, 2, 3, -4, -1, 4]
+    n = len(arr)
+  
+    ans = [0] * n
+    pos = 0
+    neg = 1
+    
+    for i in range(n):
+        if arr[i] < 0:
+            ans[neg] = arr[i]
+            neg += 2 
+        else:
+            ans[pos] = arr[i]
+            pos += 2
+    
+    # fr leftover elems of array in the sorted mode 
+    for i in range(2):
+         arr[i*2] = pos[i]
+         arr[i*2+1] = neg[i]
+         
+         
+
+    return ans
+
+# print(rearrange())
+            
+
+    
