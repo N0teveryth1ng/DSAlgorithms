@@ -159,32 +159,90 @@ def test():   # MORE better way to undertand stock DP
 # print(test()) 
 
 
+# most optimal intepretation - Rearrange the array in alternating positive and negative items
 def rearrange():
-    arr = [1, 2, 3, -4, -1, 4]
+    arr = [1, 2, 3, -4, -1, -4]
     n = len(arr)
-  
-    ans = [0] * n
-    pos = 0
-    neg = 1
+    res = [0] * n
     
-    for i in range(n):
-        if arr[i] < 0:
-            ans[neg] = arr[i]
-            neg += 2 
+    i,j = 0,1
+    
+    for k in range(n):
+        if arr[k] > 0 and i < n:
+            res[i] = arr[k]
+            i += 2
         else:
-            ans[pos] = arr[i]
-            pos += 2
-    
-    # fr leftover elems of array in the sorted mode 
-    for i in range(2):
-         arr[i*2] = pos[i]
-         arr[i*2+1] = neg[i]
-         
-         
+            res[j] = arr[k]
+            j += 2
+            
+    return res
 
-    return ans
 
 # print(rearrange())
-            
 
+
+
+#  NEXT PERMUTATION - - longest prefix sum 
+# s1 - find the pivot
+# s2 - find the greater digit elem than pivt
+# s3 - swap the elems with the pivot
+# s4 - reverse the suffix and miantain rhe reminaings rest
+ 
+def permutation():
+    arr = [2,1,5,4,3,0,0]
+    
+    pivot = -1
+    n = len(arr)
+    
+    for i in range(n-2,-1,-1):
+       if arr[i] < arr[i+1]:
+           pivot = i
+           break
+       
+    if pivot == -1:
+        arr.reverse()
+        return arr
+       
+       
+    for j in range(n-1,pivot,-1):
+        if arr[j] > pivot:
+            arr[pivot], arr[j] = arr[j], arr[pivot]
+            break
+        
+    
+    arr[pivot+1:] = reversed(arr[pivot+1:])
+    
+    return arr
+
+
+# print(permutation())
+
+
+
+
+# LEADER elem -- Find the leader elems of an array
+# - traverse from the right of the loop
+
+def leader():
+    arr = [16, 17, 4, 3, 5, 2]
+    
+    n = len(arr)
+    leader_nums = []
+    max_right = arr[-1]
+    leader_nums.append(max_right)
+    
+    for j in range(n-2,-1,-1):
+        if arr[j] > max_right:
+           leader_nums.append(arr[j]) 
+           max_right = arr[j]
+       
+    
+    leader_nums.reverse()    
+    return leader_nums
+
+# print(leader())
+
+   
+      
+def consec():
     
