@@ -242,7 +242,123 @@ def leader():
 
 # print(leader())
 
-   
-      
-def consec():
+
+# LONGEST consecutive -- brute force application
+# Parse thrugh each and every elemnt of the array
+# maxing the last of the longest
+def long_consec():
+    arr = [100,4,200,1,3,2]
+    n = len(arr)
     
+    longest = 1
+    
+    for i in range(n):
+        x = arr[i]
+        cnt = 1
+        
+        while x + 1 in arr:
+                x += 1
+                cnt += 1
+                
+        longest = max(longest, cnt)
+        
+    return longest
+
+# print(long_consec())
+                
+                
+# optimal approach  - - 
+# instead of parsing every elem each at a time
+# use set for each time parsing & maxing the last of the longest
+def longest_consec():
+    
+    arr = [100,4,200,1,3,2]
+    num_set = set(arr)
+    
+    longest = 0
+    
+    for i in num_set:
+         
+        if i - 1 in num_set:
+            current_num = i
+            count = 1    
+     
+            while current_num + 1 in num_set:
+                current_num += 1
+                count += 1
+                
+            longest = max(longest, count)
+            
+    return longest
+
+
+# print(longest_consec())    
+        
+        
+        
+# Set matrix 0's - - -
+
+# - mark all the 0s first in rows and cols
+# - mark very non 0's to -1 both row and col level
+# - lastly turn evry -1 into 0s now. AT row and cols levle
+
+def matrix():
+# brute force approach     
+    arr =  [[1,1,1],[1,0,1],[1,1,1]]
+    rows = len(arr)
+    cols = len(arr[0])
+    
+    zero_rows = set()
+    zero_cols = set()
+    
+    # mark all the 0s
+    for i in range(rows):
+        for j in range(cols):
+            if arr[i][j] == 0:
+                zero_rows.add(i)
+                zero_cols.add(j)
+                
+    # turn non-0s in -1 at rows level
+    for i in zero_rows:
+      for j in range(cols):
+        if arr[i][j] != 0:
+            arr[i][j] = -1
+            
+                
+    # turn non-0s in -1 at cols level
+    for j in zero_cols:
+      for i in range(rows):
+        if arr[i][j] != 0:
+            arr[i][j] = -1
+            
+            
+    # now turn all the -1 into 0s
+    for i in range(rows):
+        for j in range(cols):
+            if arr[i][j] == -1:
+                arr[i][j] = 0
+                
+    
+    return arr
+                
+# print(matrix())
+
+# optimla approach
+#  - keep track of the 0s 
+def matrix_optimal():
+    
+    arr = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+    
+    rows, cols = len(arr), len(arr[0])
+    
+    rowZero = False
+    
+    for i in range(rows):
+        if arr[i][0] == 0:
+            rowZero = True
+        
+        for j in range(1,cols):
+            if arr[i][j] == 0:
+                arr[i][0] = 0
+                arr[0][j] = 0
+                    
