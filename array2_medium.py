@@ -308,6 +308,7 @@ def matrix():
     rows = len(arr)
     cols = len(arr[0])
     
+    # setting markers
     zero_rows = set()
     zero_cols = set()
     
@@ -343,22 +344,159 @@ def matrix():
                 
 # print(matrix())
 
-# optimla approach
+# optimal approach - set matrix 0s 
 #  - keep track of the 0s 
 def matrix_optimal():
     
-    arr = [[0,1,2,0],[3,4,5,2],[1,3,1,5]]
+    arr = [[1,1,1],[1,0,1],[1,1,1]]
     
     rows, cols = len(arr), len(arr[0])
     
+    # setting markers
     rowZero = False
+    colZero = False
     
+    # check if 1st rows has 0
     for i in range(rows):
         if arr[i][0] == 0:
             rowZero = True
         
-        for j in range(1,cols):
-            if arr[i][j] == 0:
-                arr[i][0] = 0
-                arr[0][j] = 0
+    # check if 1st col has 0
+    for j in range(cols):
+        if arr[0][j] == 0:
+            colZero = True
+    
+    # use first row/cols as markers
+    for i in range(1, rows):  
+       for j in range(1,cols):
+          if arr[i][j] == 0:
+              arr[i][0] = 0
+              arr[0][j] = 0
                     
+    # update cells based on markers 
+    for i in range(1, rows):
+        for j in range(1, cols):
+           if arr[i][0] == 0 or arr[0][j] == 0:
+               arr[i][j] = 0
+               
+        
+    # handle first row/col seprlty
+    if colZero:
+        for j in range(cols):
+            arr[0][j] = 0
+            
+    if rowZero:
+        for i in range(rows):
+            arr[i][0] = 0
+            
+            
+            
+    return arr
+
+# print(matrix_optimal())
+
+
+
+# ROTATE THE MATRIX BY 90* (degs) - - - - - 
+# Naive approach - we can swap the positions of cols with rows and vice versa  
+
+def rotate_90():
+     arr = [[1,2,3],[4,5,6],[7,8,9]]
+     n = len(arr)
+     
+     l,r = 0, n-1
+     
+     while l < r:
+        for i in range(r-l):
+         
+           top , bottom = l,r
+           
+           # temp var of topleft 
+           topleft = arr[top][l+i]
+           
+           # botom left to top left
+           arr[top][l+i] = arr[bottom-i][l]
+           
+           # botom rght to botom left
+           arr[bottom-i][l] = arr[bottom][r-i]
+           
+           # top riht to botom righit
+           arr[bottom][r-i] = arr[top+i][r]
+           
+           # top left to top right
+           arr[top+i][r] = topleft
+           
+        l += 1
+        r -= 1
+        
+        return arr
+    
+    
+# print(rotate_90())
+    
+#  - - - - - - MOST OPTIMAL WAY
+# Best approach -- sorting the whole matrix in-place without causing external arr{n-1-i} 
+def rotate():
+    
+    arr = [[1,2,3],[4,5,6],[7,8,9]]
+    n = len(arr)
+   
+    for i in range(n):
+        for j in range(i,n):
+                arr[i][j], arr[j][i] = arr[j][i], arr[i][j]
+                
+    for row in arr:    
+        row.reverse()     
+
+    return arr
+
+# print(rotate())
+                           
+                           
+# SPIRAL TRAVERSAL OF MATRIX - - - 
+# (bascially prints all the elms in the matrix at a spiral form)  
+#  it doesn't have to many ways except optimal itself.  
+ 
+def spiral():
+    
+    arr = [[1,2,3],[4,5,6],[7,8,9]]
+    
+    n = len(arr)
+    m = len(arr[0])
+    left, right = 0, m - 1
+    top, bottom = 0, n - 1
+    res = []
+    
+    while top <= bottom and left <= right:
+        
+        for i in range(left, right + 1):
+           res.append(arr[top][i])
+        top += 1
+        
+        for i in range(top, bottom + 1):
+            res.append(arr[i][right])
+        right -= 1
+        
+        
+        if top <= bottom:
+            for i in range(right, left - 1, -1):
+               res.append(arr[bottom][i])
+            bottom -= 1
+            
+        if left <= right:
+            for i in range(bottom, top - 1, -1):
+                res.append(arr[i][left])
+            left += 1
+            
+            
+    return res
+
+# print(spiral())
+            
+                      
+# 
+        
+            
+            
+
+                           
