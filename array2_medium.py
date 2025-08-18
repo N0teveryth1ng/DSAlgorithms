@@ -494,7 +494,29 @@ def spiral():
 # print(spiral())
             
                       
-# 
+# SUBARRAY SUM K --- prefix node of the array - - - - [not clear at all about prfix sum]
+
+def subaaray_k():
+    
+    arr = [1,2,3]
+    k = 3
+    prefix_sum = {0:1}
+    current_sum = 0
+    count = 0
+    
+    for i in arr:
+        if current_sum - k in prefix_sum:
+            count += prefix_sum[current_sum-k]
+            
+            
+    # - - - - - - Pending didnt understand a shit about it  
+            
+    
+             
+    
+     
+
+
         
             
             
