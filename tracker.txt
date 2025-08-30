@@ -4,7 +4,7 @@ TRACKING MY PROGRESS - - -
 1. ARRAYS - 
     - easy - (2 left - union find, longest subarray)
     - mid - (1 more left - prefix sum)
-    - hard - 
+    - hard - ( 2 is not done) 
 
 
 
@@ -12,6 +12,6 @@ TRACKING MY PROGRESS - - -
   Recursion, Pointers, 
 
 
-2. BIT MANIPULATION - 
-    - 
+2. BINARY SEARCH -
+    - easy 
     
