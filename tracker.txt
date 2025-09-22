@@ -9,9 +9,11 @@ TRACKING MY PROGRESS - - -
 
 
  - - - - - - Points To Focus - - - - - - -
-  Recursion, Pointers, 
+  Recursion, Pointers, greedy, binary search, DP,  
 
 
 2. BINARY SEARCH -
     - easy 
-    
+    - medium 
+    - hard
+
