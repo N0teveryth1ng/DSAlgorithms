@@ -166,16 +166,40 @@ def peak_elem():
 # print(peak_elem())    
 
 
+#  - - - - matrix median of 2d matrix  - - - - - 
+import bisect
+def median():
+    
+    mat = [[1,2,3,4,5],
+          [6,7,8,9,10],
+          [11,12,13,14,15]]
+    
+    n,m = len(mat), len(mat[0])
+    low, high =  mat[0][0], mat[-1][-1]
+    median = (n * m + 1) // 2
+    
+    while low <= high:
+        mid = (low + high) // 2
+        
+        # find 1st occurrence of mid value
+        count = 0
+        for i in mat:
+            count += bisect.bisect_right(i, mid)
+        
+
+        if count < median:
+            low = mid + 1
+        else:
+            high = mid - 1
+             
+    return low
+
+# print(median())
+
+        
+    
+        
 
 
-                    
 
-
-
-
-
-                   
-                   
-                   
-                   
     
