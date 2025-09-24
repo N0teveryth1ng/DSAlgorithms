@@ -45,6 +45,56 @@ def remove_parentheses():
     return "".join(res)
 
 # print(remove_parentheses())
+
+
             
+# reverse a string
+def reverse():
+    
+    s = "the sky is blue"
+    
+    s.strip()
+    words = s.split()
+    reversed_words = words[::-1]
+    return " ".join(reversed_words)
+
+# print(reverse())
 
 
+
+# largest odd nums - -  return the prefix of longest odd strings
+def largest_odd():
+    
+    num = "52"
+    for i in range(len(num) - 1, -1, -1):
+        
+        if int(num[i]) % 2 == 1:
+            return num[:i+1]
+        
+    return ""
+      
+# print(largest_odd())    
+    
+  
+  
+# longest common prefix
+def longest_prefix():
+    
+    strs = ["flower","flow","flight"]
+    res = ""
+    
+    for i in range(len(strs[0])):
+      for s in strs:
+        if i >= len(strs) or s[i] != strs[0][i]:
+            return res 
+      res += strs[0][i]   
+    return res
+
+# print(longest_prefix())
+
+
+# isomorpic alog
+
+def isomorphic():
+    
+    
