@@ -17,3 +17,10 @@ TRACKING MY PROGRESS - - -
     - medium 
     - hard
 
+3. Strings - 
+    - Basic
+    - Medium 
+     [ Check the star marked Q's for further clarifics ]  - -
+
+4.  Linked Lists - 
+    
