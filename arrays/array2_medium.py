@@ -299,7 +299,7 @@ def longest_consec():
 # Set matrix 0's - - -
 
 # - mark all the 0s first in rows and cols
-# - mark very non 0's to -1 both row and col level
+# - mark very non-0's to -1 both row and col level
 # - lastly turn evry -1 into 0s now. AT row and cols levle
 
 def matrix():
