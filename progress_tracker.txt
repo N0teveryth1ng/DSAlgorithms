@@ -25,3 +25,95 @@ TRACKING MY PROGRESS - - -
 4.  Linked Lists - 
     - singly LL ()
     - Doubly LL 
+
+
+    DLL - - - -  
+    - - - insert head - - - 
+      
+      next_node.next = self.head
+      self.head.prev = new_node
+      self.head = new_node
+
+    
+     - - - insert tail - - -
+
+     temp.next = new_node
+     new_node.prev = temp
+
+     
+     - - - insert Kth - - - 
+     
+     if k == 1:
+        new_node.next = self.head
+        self.head.prev = new_node
+        self.head = new_node
+        return
+
+     temp = self.hard
+     count = 1
+     while temp and count < k-1:
+        temp = temp.next
+        count += 1
+
+     if not temp:
+        return
+
+     new_node.next = temp.next
+     temp.next = new_node 
+     if temp.next:
+        temp.next.prev = new_node
+
+
+
+    - - -  delete kth - - - 
+
+    if not self.head:
+        return
+
+    if k == 1:
+       self.delete_tail(val)
+       return
+
+    temp = self.head
+    count = 1
+    while temp and count < k-1:
+        temp = temp.next
+        count += 1
+
+    if not temp:
+       return
+
+   
+    if temp.prev:
+       temp.prev.next = temp.next 
+    if temp.next:
+       temp.next.prev = temp.prev  
+
+
+     
+     - - - - delete head - - - - 
+
+     if not self.head:
+         return
+
+     self.head = self.head.next
+     if self.head.next:
+        self.head.prev = None
+        return
+
+
+     - - - - delete tail - - - -
+
+     if not self.head:
+         return
+
+     temp = self.head
+     while temp.next:
+         temp = temp.next
+
+     if temp.prev:
+        temp.prev.next = None
+     else:
+        self.head = None
+
+        

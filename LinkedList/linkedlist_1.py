@@ -45,8 +45,8 @@ class linked_list:
     
     # remove heads
     def removeHead(self, val):
-        if self.head is None:
-            return None
+        if not self.head:
+            return 
         
         # value is in head check
         if self.head.data == val:
@@ -282,6 +282,7 @@ class Dlinkedlist:
         while temp.next:
             temp = temp.next
         temp.next = new_node
+        new_node.prev = temp
         
         
         
@@ -289,14 +290,20 @@ class Dlinkedlist:
         # DLL head insert 
     def insert_head(self, val):
         new_node = dNode(val)
-        self.head.next = self.head
+        if not self.head:
+            self.head = new_node
+            return
+        
+        new_node.next = self.head
+        self.head.prev = new_node
         self.head = new_node
         
-        
+
         
         # tail insert DLL
     def insert_tail(self, val):
         new_node =  dNode(val)
+        
         if not self.head:
             self.head = new_node
             return
@@ -304,8 +311,9 @@ class Dlinkedlist:
         temp = self.head
         while temp.next:
             temp = temp.next 
+        
         temp.next = new_node  # - for inserting elem at next node 
-        temp.prev = new_node  # - for inserting elem at prev node
+        new_node.prev = temp  # - for inserting elem at prev node
 
         
         # Kth insert for DLL
@@ -317,13 +325,14 @@ class Dlinkedlist:
         
         if k == 1:
             new_node.next = self.head
+            self.head.prev = new_node
             self.head = new_node
             return
         
         
         temp = self.head
         count = 1
-        while temp.next:
+        while temp and count < k-1:
             temp = temp.next
             count += 1
             
@@ -331,35 +340,103 @@ class Dlinkedlist:
             return
         
         new_node.next = temp.next
+        new_node.prev = temp
+        if temp.next:
+            temp.next.prev = new_node
         temp.next = new_node
         
         
         
-    # delete for elemt 
+    # delete for head elemt only 
     def delete_head(self):
         if not self.head:
             return
         
-        if self.head.data == None:
-            self.head = None  
+        self.head = self.head.next
+        if self.head:  
+           self.head.prev = None
+        
+
+
+    # delete tail onlly
+    def delete_tail(self):
+        
+        if not self.head:
             return
         
         temp = self.head
-        while temp.next.next:
+        while temp.next:
             temp = temp.next
-        temp.next = None
-        
-        
-    # 
-    def         
             
-        
-        
-    
+        if temp.prev:
+            temp.prev.next = None
+        else:
+            self.head = None
             
+            
+            
+    # delete kth elem
+    def delte_kth(self, k):
+        
+        if not self.head:
+            return
+        
+        if k == 1:
+            self.delete_tail()
+            return
+        
+        temp = self.head
+        count = 1
+        while temp and count < k - 1:
+            temp = temp.next
+            count += 1
+            
+        if not temp:
+            return
+        
+        if temp.next:
+            temp.next.prev = temp.prev
+        if temp.prev:
+            temp.prev.next = temp.next
+            
+            
+    # display the nodes  
+    def display_forward(self):
+        temp = self.head
+        while temp:
+            print(temp.val, end=" <-> ")
+            temp = temp.next
+        print("None")
+
         
         
+    # display backward
+    def display_back(self):
         
+        temp = self.head
+        if not temp:
+           print("Empty List")
+           return
     
+        # move to tail
+        while temp.next:
+            temp = temp.next
         
+        # now traverse backwards
+        while temp:
+            print(temp.val, end=" <-> ")
+            temp = temp.prev
+        print("None") 
         
+            
+dbll = Dlinkedlist()
+dbll.insert_elem(5)
+dbll.insert_tail(7)
+
+dbll.display_forward()
+dbll.display_back()
+
+dbll.insert_kth(3,1)
+dbll.insert_kth(8,4)
+dbll.display_forward()
+# dbll.display_back()
