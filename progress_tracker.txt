@@ -37,6 +37,14 @@ TRACKING MY PROGRESS - - -
     
      - - - insert tail - - -
 
+     if not self.head:
+        self.head = new_node
+        return
+
+     temp = self.head
+     while temp.next:
+         temp = temp.next
+
      temp.next = new_node
      new_node.prev = temp
 
@@ -117,3 +125,5 @@ TRACKING MY PROGRESS - - -
         self.head = None
 
         
+
+    - Arrays to DLL

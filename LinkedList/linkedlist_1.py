@@ -355,9 +355,6 @@ class Dlinkedlist:
         self.head = self.head.next
         if self.head:  
            self.head.prev = None
-        
-
-
     # delete tail onlly
     def delete_tail(self):
         
@@ -398,18 +395,14 @@ class Dlinkedlist:
             temp.next.prev = temp.prev
         if temp.prev:
             temp.prev.next = temp.next
-            
-            
+                   
     # display the nodes  
     def display_forward(self):
         temp = self.head
         while temp:
             print(temp.val, end=" <-> ")
             temp = temp.next
-        print("None")
-
-        
-        
+        print("None")      
     # display backward
     def display_back(self):
         
