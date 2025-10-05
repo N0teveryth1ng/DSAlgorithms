@@ -1,3 +1,5 @@
+""" BOTH SLL AND DLL CONTAINS IN THIS FILE  """
+
 # Covering the basics of link lists and all 
 
 """  
@@ -264,7 +266,6 @@ class Dlinkedlist:
         while temp.next:
             temp = temp.next
         
-        
         temp.next = new_node
         new_node.prev = temp
         
@@ -405,6 +406,8 @@ class Dlinkedlist:
         print("None")      
     # display backward
     def display_back(self):
+
+    # revese a DLL
         
         temp = self.head
         if not temp:
@@ -421,7 +424,25 @@ class Dlinkedlist:
             temp = temp.prev
         print("None") 
         
+        # 
+    def reverse_dll(self):
+        
+        if not self.head:
+            return
+        
+        curr = self.head
+        prev_node = None
+        while curr is not None:
+            temp = curr.next
+            curr.next = curr.prev
+            curr.prev = temp
+            prev_node = curr
+            curr = temp
             
+        self.head = prev_node
+        
+        
+ #  - - calling the fucntions  
 dbll = Dlinkedlist()
 dbll.insert_elem(5)
 dbll.insert_tail(7)
@@ -432,4 +453,11 @@ dbll.display_back()
 dbll.insert_kth(3,1)
 dbll.insert_kth(8,4)
 dbll.display_forward()
-# dbll.display_back()
+# dbll.display_back() 
+# print('reversed')
+# dbll.reverse_dll()
+# dbll.display_forward()
+
+
+# linked list has to form a stacka nd all which i really thnkit is 
+
