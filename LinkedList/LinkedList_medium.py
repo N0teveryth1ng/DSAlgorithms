@@ -143,7 +143,7 @@ class Dlinkedlist:
         return False
         
         
-    # detetc a loop - optimal way 
+    # detect a loop - optimal way 
     def detect_loop_optmal(self):
         
         if not self.head:
@@ -160,7 +160,92 @@ class Dlinkedlist:
                 return True
         
         return False
- 
+    
+             
+        
+    # linked list cycle - - - - find the starting point of a loop  
+    def ll_cycle(self):
+        
+        if not self.head:
+            return
+        
+        slow, fast = self.head, self.head
+        
+        # check if the loop exists
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next  
+            
+            if slow == fast:
+                break
+            else:
+                return None
+            
+        # find the start of the cycle 
+        fast = self.head
+        while fast != slow:
+            fast = fast.next
+            slow = slow.next
+        
+        return slow
+    
+        
+        
+        
+        
+    # length of the loop - - - - brute force method [ using map ]
+    def  len_loop_brute(self):
+        
+        if not self.head:
+            return 0 
+        
+        store = set()
+        
+        temp = self.head
+        while temp:
+            if temp in store:
+                
+                loop_found = temp
+                count = 1
+                temp = temp.next
+                
+                while temp != loop_found:
+                    count += 1
+                    temp = temp.next  
+                    
+                return count 
+            
+            store.add(temp)
+            temp = temp.next  
+        
+        
+        
+    # length of loop - - - optimal method [ using slow, fast ] 
+    def len_loop_optimal(self):
+            
+        if not self.head:
+            return 
+        
+        slow, fast = self.head, self.head
+        
+        while fast and fast.next:
+            slow = slow.next  
+            fast = fast.next.next  
+            
+            if slow == fast:
+                
+                count = 1
+                temp = slow.next  
+                while temp != slow:
+                   count += 1
+                   temp = temp.next  
+                   
+                return count
+                  
+        return 0
+    
+    
+        
         
     
     def display_forward(self):
@@ -187,9 +272,10 @@ print('after reverse - ')
 ll.rev_ll_optimal()
 
 print('detect a loop - ', ll.detect_loop())
+
+print('start of cycle - - ', ll.ll_cycle().val)   
+  
 ll.display_forward() 
-     
-     
 
         
         
