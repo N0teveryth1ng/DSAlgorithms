@@ -1,6 +1,5 @@
 # Linked lists medium 
 
-# middle of a linked list
 
 class dNode:
     def __init__(self, val):
@@ -28,6 +27,7 @@ class Dlinkedlist:
         new_node.prev = temp
         
         
+    # middle of a linked list    
     # find the mid of the LL 
     def mid_of_ll(self):
         
@@ -235,7 +235,7 @@ class Dlinkedlist:
             if slow == fast:
                 
                 count = 1
-                temp = slow.next  
+                temp = slow.next       
                 while temp != slow:
                    count += 1
                    temp = temp.next  
@@ -245,36 +245,112 @@ class Dlinkedlist:
         return 0
     
     
+    # check if a LL is palindrome or not
+    def palindrome_ll(self):
         
+        if not self.head:
+            return
         
+        stack = []
+        
+        temp = self.head
+        while temp:
+            stack.append(temp.val)
+            temp = temp.next
+            
+        temp = self.head
+        while temp:
+            if temp.val != stack.pop():
+                return False
+            temp = temp.next
+            
+        return True
     
+    
+    
+    def palindome_optimal(self):
+        
+        if not self.head:
+            return
+        
+        # check for mid 
+        slow, fast = self.head, self.head
+        temp = self.head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next 
+            
+        # reverse the 2nd half
+        prev = None
+        while slow:
+           temp = slow.next
+           slow.next = prev
+           prev = slow
+           slow = temp
+           
+        # compare both  
+        left, right = self.head, prev
+        while right:
+            if left.val != right.val:
+                return False
+            
+            left = left.next
+            right = right.next
+            
+        return True   
+        
+            
+    
+    # odd and even linked list
+    def odd_even_ll(self):
+        
+        if not self.head:
+            return
+        
+        stack = []
+        
+        temp = self.head
+        while temp:
+            
+            # store the odds one in stack
+            if temp % 2 != 0:
+                stack.append(temp)
+                
+            temp = temp.next
+            
+        return temp + stack
+    
+                
+        
+    # display the LL in terminal 
     def display_forward(self):
         temp = self.head
         while temp:
-            print(temp.val, end=" <-> ")
+            print(temp.val, end=" - ")
             temp = temp.next
         print("None") 
     
     
 ll = Dlinkedlist()
-ll.append(5)
-ll.append(10)
-ll.append(15)
-ll.append(20)
-ll.append(25)
+ll.append(1)
+ll.append(2)
+ll.append(3)
+ll.append(9)
+ll.append(1)
 ll.display_forward()
 
 # print('mid elem - ', ll.mid_of_ll())
-print('slow, fast - ', ll.tortoise())
+# print('slow, fast - ', ll.tortoise())
 
-print('after reverse - ')
+# print('after reverse - ')
 # ll.rev_ll()
-ll.rev_ll_optimal()
+# ll.rev_ll_optimal()
 
-print('detect a loop - ', ll.detect_loop())
+# print('detect a loop - ', ll.detect_loop())
 
-print('start of cycle - - ', ll.ll_cycle().val)   
-  
+# print('start of cycle - - ', ll.ll_cycle().val)   
+
+print('palindrome check - ', ll.palindrome_ll())
 ll.display_forward() 
 
         
