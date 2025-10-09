@@ -66,7 +66,7 @@ class Dlinkedlist:
         
          
          
-    # reverse a LL ( iterative ) 
+    # reverse a LL ( brute force ) 
     def rev_ll(self):
         
         if not self.head:
@@ -89,6 +89,7 @@ class Dlinkedlist:
         temp.next = None
         return new_head
     
+    
     # iterative reversal 
     def rev_ll_optimal(self):
         
@@ -110,7 +111,6 @@ class Dlinkedlist:
     
     # recursive reversal     - - - - - - still the worst way to deal 
     def rev_ll_recurse(self):
-        head = self.head
         def recurse(head):    
             
             if self.head is None or self.head.next is None:
@@ -268,6 +268,7 @@ class Dlinkedlist:
     
     
     
+    # palindrome optimal
     def palindome_optimal(self):
         
         if not self.head:
@@ -301,26 +302,81 @@ class Dlinkedlist:
         
             
     
-    # odd and even linked list
+    # odd and even linked list - - - - ( brute force method )
     def odd_even_ll(self):
+        
+        if not self.head or not self.head.next:
+            return self.head
+        
+        stack = []
+        
+        # store odd indexes
+        temp = self.head
+        while temp and temp.next:
+            
+            # store the odds one in stack
+            stack.append(temp.val)
+            temp = temp.next.next if temp.next else None
+            
+        # store even indexes
+        temp = self.head.next
+        while temp and temp.next:
+            
+            stack.append(temp.val)
+            temp = temp.next.next if temp.next else None
+                
+                
+        temp = self.head
+        for data in stack:
+            temp.data = data    
+            temp = temp.next
+            
+        return self.head
+             
+            
+            
+    def odd_even_optimal(self):
+        
+        if not self.head or not self.head.next:
+            return
+        
+        temp = self.head
+        
+        odd = temp
+        even = temp.next
+        even_head = even
+        
+        while even and even.next:
+            odd.next = odd.next.next  
+            even.next = even.next.next  
+            
+            odd = odd.next
+            even = even.next
+            
+        odd.next = even_head
+        return self.head    
+            
+            
+            
+            
+            
+    # delete the nth node from LL
+    def del_nth_node(self, n):
         
         if not self.head:
             return
         
-        stack = []
-        
         temp = self.head
+        count = 0
         while temp:
-            
-            # store the odds one in stack
-            if temp % 2 != 0:
-                stack.append(temp)
-                
             temp = temp.next
+            count += 1
             
-        return temp + stack
-    
-                
+        if count == n:
+            temp.next.next  
+            
+        return count    
+            
         
     # display the LL in terminal 
     def display_forward(self):
@@ -350,10 +406,14 @@ ll.display_forward()
 
 # print('start of cycle - - ', ll.ll_cycle().val)   
 
-print('palindrome check - ', ll.palindrome_ll())
+# print('palindrome check - ', ll.palindrome_ll())
+
+print('odd and even ll - ', ll.odd_even_optimal())
+
+
 ll.display_forward() 
 
-        
+
         
         
         
