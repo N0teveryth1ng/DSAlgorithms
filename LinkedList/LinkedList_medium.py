@@ -358,24 +358,57 @@ class Dlinkedlist:
             
             
             
-            
-            
-    # delete the nth node from LL
-    def del_nth_node(self, n):
+    # delete the nth node from the back of the LL
+    # - - - using while loop starts at position 1 
+    def delete_nth_node(self, n): 
         
-        if not self.head:
-            return
-        
-        temp = self.head
-        count = 0
+        # check for head node
+        head = self.head
+        if not head:
+           return None
+       
+        # count nodes
+        temp = head
+        count  = 0
         while temp:
             temp = temp.next
             count += 1
             
-        if count == n:
-            temp.next.next  
+        # remove head if nth
+        if n == count:
+            return head.next
+        
+        # traverse until nth form front (cus we cant from back)
+        temp = head
+        pos = 1
+        while pos < count - n:
+            temp = temp.next
+            pos += 1
             
-        return count    
+        temp.next = temp.next.next  
+        return head
+        
+        
+        
+    # delete the mid LL
+    def mid_ll(self):
+        
+        if not self.head or not self.head.next:
+            return None
+        
+        slow, fast = self.head, self.head
+        prev = None
+        
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next 
+            prev = slow
+
+        prev.next = slow.next  
+            
+        return self.head        
+       
+        
             
         
     # display the LL in terminal 
@@ -408,10 +441,13 @@ ll.display_forward()
 
 # print('palindrome check - ', ll.palindrome_ll())
 
-print('odd and even ll - ', ll.odd_even_optimal())
+# print('odd and even ll - ', ll.odd_even_optimal())
+
+# print('delete nth node - ', ll.delete_nth_node(2))
+print('del middle - ', ll.mid_ll())
+ll.display_forward()    
 
 
-ll.display_forward() 
 
 
         

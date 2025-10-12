@@ -1,3 +1,223 @@
 ALL DSA Q'S ARE JUST A BUNCH OF PATTERNS THAT WE HAVE TO PUT IT INTO OUR INSTINCT 
 - - - - - CONSIDERING ALL THE TOPICS WE HAVE ITS JUST A PATTERN RECOGNITION
 
+
+ - - - - THIS IS ALL THE PATTERNS THAT IS USED IN CONSTANT REPEATING ORDER IN 95% OF THE CASES - - - -  
+
+---
+
+## 🧠 1. Arrays
+
+**Core Patterns:**
+
+* Sliding Window (fixed and variable length)
+* Two Pointers (start–end, slow–fast)
+* Prefix Sum
+* Kadane’s Algorithm (max subarray)
+* Sorting + Binary Search
+* Merge Intervals
+* Dutch National Flag (3-way partition)
+* Cyclic Sort (finding missing/duplicate)
+* Monotonic Stack (next greater/smaller element)
+
+---
+
+## 🔗 2. Linked List
+
+**Core Patterns:**
+
+* Fast & Slow Pointers (detect cycle, middle, palindrome)
+* Reversal (entire list or in groups of k)
+* Merge Two Sorted Lists
+* Add Two Numbers (carry logic)
+* Dummy Node technique (deletion/insertion simplification)
+* Split & Merge Lists (reordering problems)
+* Copy Linked List with Random Pointers
+
+---
+
+## 🧩 3. Stacks & Queues
+
+**Core Patterns:**
+
+* Monotonic Stack (stock span, histogram, next greater element)
+* Stack for Expression Evaluation (infix → postfix, valid parentheses)
+* Stack for Min/Max tracking
+* Queue for Sliding Window Maximum
+* Circular Queue implementation
+* Using Stack for recursion simulation
+
+---
+
+## 🌲 4. Trees (Binary + BST)
+
+**Core Patterns:**
+
+* DFS (Preorder, Inorder, Postorder)
+* BFS (Level Order, Zigzag)
+* Recursive Divide & Conquer
+* Height-balanced checks (diameter, height)
+* LCA (Lowest Common Ancestor)
+* Path Sum problems
+* Boundary/Right/Left view
+* Serialize/Deserialize Tree
+* BST-specific patterns (inorder traversal = sorted)
+
+---
+
+## 🕸️ 5. Graphs
+
+**Core Patterns:**
+
+* BFS / DFS traversal
+* Union-Find (Disjoint Set)
+* Topological Sort (Kahn’s Algorithm / DFS)
+* Dijkstra’s Algorithm (Shortest Path)
+* Bellman-Ford
+* Floyd–Warshall
+* Kruskal’s / Prim’s (MST)
+* Cycle Detection (directed & undirected)
+* Connected Components
+* Backtracking in Graphs (word search, Hamiltonian path)
+
+---
+
+## ⚙️ 6. Recursion & Backtracking
+
+**Core Patterns:**
+
+* Subset Generation (include/exclude)
+* Permutation Generation (swap/backtrack)
+* Combination Sum Variations
+* N-Queens / Sudoku Solver
+* Word Search (DFS grid backtracking)
+* Palindrome Partitioning
+* Decision Tree Recursion (branch-based decisions)
+
+---
+
+## 💰 7. Dynamic Programming
+
+**Core Patterns:**
+
+* 1D DP (Fibonacci, climbing stairs)
+* 2D DP (grid paths, unique paths, minimum cost)
+* Subset / Knapsack Variants
+* Longest Common Subsequence Variants (LCS, LIS, etc.)
+* Partition DP (palindrome partitioning)
+* State Compression DP (bitmask)
+* DP on Strings (edit distance, regex match)
+* DP on Trees (max path sum)
+* Memoization & Tabulation Transition
+
+---
+
+## 🧮 8. Searching & Sorting
+
+**Core Patterns:**
+
+* Binary Search Variations:
+
+  * On sorted array
+  * On answer space
+  * On rotated sorted array
+* Merge Sort (inversion count)
+* Quick Sort (partition logic)
+* Heap Sort / Counting Sort
+* Search in Matrix / Peak Element
+
+---
+
+## 🔢 9. Heaps / Priority Queue
+
+**Core Patterns:**
+
+* Top K Elements
+* Kth Smallest/Largest
+* Merge K Sorted Lists
+* Reorganize String / Frequency Sort
+* Sliding Window Median
+* Min Heap for intervals
+
+---
+
+## 🔠 10. Strings
+
+**Core Patterns:**
+
+* Two Pointers (palindrome, anagram window)
+* Sliding Window (longest substring variations)
+* HashMap + Frequency Count (valid window)
+* KMP / Rabin-Karp / Z-algorithm (pattern search)
+* String Parsing (remove adjacent duplicates, parentheses)
+* DP on Strings (edit distance, LCS)
+* Trie-based problems (autocomplete, word search)
+
+---
+
+## 💫 11. Hashing
+
+**Core Patterns:**
+
+* Prefix Sum + HashMap (subarray sums)
+* Frequency Map (anagrams, character counts)
+* HashSet (detect duplicates, pair sums)
+* HashMap for Index Storage (two sum)
+* Grouping (group anagrams, frequency sorting)
+
+---
+
+## 🧮 12. Math & Bit Manipulation
+
+**Core Patterns:**
+
+* GCD / LCM
+* Modular Arithmetic
+* Sieve of Eratosthenes (prime generation)
+* Bitmask (subsets, state compression)
+* XOR tricks (single number, missing number)
+* Counting bits
+* Fast Power (exponentiation)
+* Integer overflow checks
+
+---
+
+## 🏗️ 13. Intervals & Greedy
+
+**Core Patterns:**
+
+* Sorting by start/end
+* Merge Intervals
+* Activity Selection
+* Minimum Platforms / Meeting Rooms
+* Jump Game variations
+* Gas Station / Candy Distribution
+* Fractional Knapsack
+
+---
+
+## 🔍 14. Tries & Advanced DS
+
+**Core Patterns:**
+
+* Prefix Search / Autocomplete
+* Word Dictionary (wildcard search)
+* Bitwise Trie (maximum XOR)
+* Suffix Trie for substring match
+
+---
+
+## ⚡ 15. Advanced Topics (FAANG-Level)
+
+**Core Patterns:**
+
+* Segment Tree / Fenwick Tree
+* Binary Lifting (LCA)
+* Union-Find optimizations
+* DP + Bitmask (TSP)
+* Graph + DP (shortest Hamiltonian path)
+* Caching (LRU, LFU)
+* Custom Comparator Sorting
+* Prefix Tree with DP
+
+---
