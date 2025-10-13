@@ -408,7 +408,78 @@ class Dlinkedlist:
             
         return self.head        
        
+       
+    # sort a LL
+    # implementing brute force method
+    def sort_ll(self):
         
+        if not self.head or not self.head.next:
+            return self.head
+        
+        store = []
+        temp = self.head
+        
+        while temp:
+            store.append(temp.val)
+            temp = temp.next
+            
+        store.sort()
+        
+        temp = self.head
+        for val in store:
+            temp.val = val
+            temp = temp.next
+            
+        return self.head
+    
+    
+    # sorting of LL (merge sort method) 
+    def merge_sort_LL(self):
+        
+        if not self.head or not self.head.next:
+            return self.head
+                
+        # 1 - find the middle 
+        slow, fast = self.head , self.head
+        while fast and fast.next:
+            
+            slow = slow.next
+            fast = fast.next.next  
+        mid = slow
+        slow.next = None
+        
+        # 2 - sort recursively
+        left = ll.merge_sort_LL(self.head)
+        right = ll.merge_sort_LL(mid)
+        
+        # 3 - merge two sorted halves 
+        dummy = Dlinkedlist()
+        tail = dummy          
+         
+        while left and right:
+            if left.val < right.val:
+                tail.next = left
+                left = left.next  
+                
+            else:
+                tail.next = right
+                right = right.next 
+            tail = tail.next 
+            
+        # 4 -connect remaining nodes  
+        if left:
+            tail.next = left
+        if right:
+            right.next = right
+            
+        return dummy.next 
+        
+      
+        
+    # sort a LL by 0s, 1s and 2s 
+    def sortBy_0_1_2()
+            
+            
             
         
     # display the LL in terminal 
@@ -444,7 +515,10 @@ ll.display_forward()
 # print('odd and even ll - ', ll.odd_even_optimal())
 
 # print('delete nth node - ', ll.delete_nth_node(2))
-print('del middle - ', ll.mid_ll())
+# print('del middle - ', ll.mid_ll())
+# print('merge sort LL - ', ll.merge_sort_LL())
+
+
 ll.display_forward()    
 
 

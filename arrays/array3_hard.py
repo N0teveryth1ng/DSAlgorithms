@@ -368,9 +368,7 @@ def merge_aray():   # - - - - - my way of solving [mix of naive and better]
         if nums1[i] <= nums2[j]:
             merge.append(nums1[i])
             i += 1     
-        
         else:
-            
             merge.append(nums2[j])
             j += 1
             
@@ -379,8 +377,8 @@ def merge_aray():   # - - - - - my way of solving [mix of naive and better]
     
     return merge
 
-
 # print(merge_aray())    
+
                 
                 
 # merge sorted array - - - - optimal approach
