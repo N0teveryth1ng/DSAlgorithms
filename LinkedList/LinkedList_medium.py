@@ -476,10 +476,116 @@ class Dlinkedlist:
         
       
         
-    # sort a LL by 0s, 1s and 2s 
-    def sortBy_0_1_2()
+    # sort a LL by 0s, 1s and 2s  - - - ( brute force method )
+    def sortBy_0_1_2(self):
+        
+        if not self.head and not self.head.next:
+            return 
+        
+        # partition by nums
+        temp = self.head
+        cnt0, cnt1, cnt2 = 0,0,0
+        
+        while temp:
+            if temp.val == 0:
+               cnt0 += 1
+            elif temp.val == 1:
+                cnt1 += 1
+            else:
+                cnt2 += 1
+                
+            temp = temp.next
+        
+        # merge it in new LL 
+        temp = self.head
+        while temp:
+            if cnt0:
+                temp.val = 0
+                cnt0 -= 1
+            elif cnt1:
+                temp.val = 1
+                cnt1 -= 1
+            else:
+                cnt2 -= 2  
+                
+            temp = temp.next     
+                
+        return self.head  
+                
+                
+                
+    # optimal of 0,1,2 by sort 
+    def optimal_012(self):
+        
+        if not self.head or not self.head:
+            return
+        
+        # initialize separate pointer  
+        zeroD = dNode(-1)
+        oneD = dNode(-1)
+        twoD = dNode(-1)
+        
+        zero = zeroD
+        one = oneD
+        two = twoD
+        
+        # partition it from the random
+        temp = self.head
+        while temp:
+            if zeroD:
+                zero.next = temp
+                zero = temp   
+            elif oneD:
+                one.next = temp
+                one = temp
+            else:
+                two.next = temp
+                two = temp
+            temp = temp.next
+            
+        # connect it from the mid 
+        zero.next = one.next  
+        one.next = two.next
+        two.next = None
+        
+        # return the head
+        self.head = zeroD.next
+        return self.head
+    
+                    
+    # find the intersection point in LL - - - -  ( Brute force method )
+    def intersection_ll(self, headB):
+        
+        if not self.head or not self.head.next:
+            return None
+        
+        seen = set()
+               
+        temp = self.head
+        while temp:
+            seen.add(temp)
+            temp = temp.next
+            
+        temp1 = headB
+        while temp1:
+                if temp1 in seen:
+                    return temp1
+                temp1 = temp1.next 
+                
+        return None
+    
+    
+    # find the intersection point in LL - - - - - - -  [ optimal approach ]
+    def optimal_mid_find(self, headB):
+        
+        if not self.head or headB:
+            return None
+        
+        
             
             
+            
+        
             
         
     # display the LL in terminal 
@@ -492,11 +598,11 @@ class Dlinkedlist:
     
     
 ll = Dlinkedlist()
+ll.append(0)
 ll.append(1)
 ll.append(2)
-ll.append(3)
-ll.append(9)
 ll.append(1)
+ll.append(2)
 ll.display_forward()
 
 # print('mid elem - ', ll.mid_of_ll())
@@ -518,7 +624,7 @@ ll.display_forward()
 # print('del middle - ', ll.mid_ll())
 # print('merge sort LL - ', ll.merge_sort_LL())
 
-
+# print(' sort by 0,1,2 - ', ll.sortBy_0_1_2())
 ll.display_forward()    
 
 
