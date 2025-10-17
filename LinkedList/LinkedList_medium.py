@@ -553,7 +553,7 @@ class Dlinkedlist:
         return self.head
     
                     
-    # find the intersection point in LL - - - -  ( Brute force method )
+    # find the intersection point in LL - - - -  ( Brute force method ) [ 92ms]
     def intersection_ll(self, headB):
         
         if not self.head or not self.head.next:
@@ -575,16 +575,50 @@ class Dlinkedlist:
         return None
     
     
-    # find the intersection point in LL - - - - - - -  [ optimal approach ]
+    # find the intersection point in LL - - - - - - -  [ optimal approach ] [ 84ms ]
     def optimal_mid_find(self, headB):
         
         if not self.head or headB:
             return None
         
+        a = self.head
+        b = headB
+        
+        while a != b:
+            a = a.next if a else headB
+            b = b.next if b else self.head
+            
+        return a
+        
         
             
+    # add 1 to a number represented by LL - - - -  Brute force method 
+    def add_helper(self, temp):   # helper function
+        if not temp:
+            return 1
+        
+        carry = self.add_helper(temp.next)
+        temp.val += carry
+        if temp.val < 10:
+            return 0
+        
+        temp.val = 0
+        return 1
+    
+    def add_num(self):  # adding the num 
+        
+        carry = self.add_helper(temp)
             
-            
+        if carry == 1:
+            temp = self.head
+            new_node = dNode(1)
+            new_node.next = temp
+            temp = new_node 
+        
+            return temp
+
+
+    
         
             
         
@@ -630,6 +664,5 @@ ll.display_forward()
 
 
 
-        
         
         
