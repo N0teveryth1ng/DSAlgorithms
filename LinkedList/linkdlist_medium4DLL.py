@@ -128,8 +128,106 @@ class Dlinkedlist:
     
     
     
-    # 
+    # reverse nodes in K-grp
+    def reverse_LL_k(self):
+        
+        if not self.head:
+            return
+        
+        dummy = dNode(0)
+        group_prev = dummy
+        dummy.next = self.head
+        
+        while True:
+            kth = self.get_kth(group_prev, kth)
+            if not kth:
+                break
+            
+            grp_next = kth.next  
+            
+        
+            # reversing 
+            curr, prev = group_prev.next, grp_next
+            while curr != grp_next:
+                temp = curr.next  
+                curr.next = prev
+                prev = curr
+                prev = temp
+                
+            
+            # linking the nodes
+            temp = group_prev.next
+            group_prev.next = kth
+            group_prev = temp
+        
+        return dummy.next
     
+        # carrier fucntion of find kth group
+    def get_kth(self, curr, k):
+        while curr and k > 0:
+            curr = curr.next 
+            k -= 1
+        return curr
+        
+        
+    
+    # rotate a linkedlist by kth elem right
+    def rotate_linkedlist(self, k):
+        
+        if not self.head:
+            return 
+        
+        # find the tail
+        tail = self.head
+        count = 1
+        while tail.next:
+            tail = tail.next
+            count += 1
+        
+        # check for Kth elem
+        k = k % count
+        if k % count == 0:
+            return self.head
+        
+        # find the new tail and head
+        new_tail = self.head
+        for _ in range(count - k - 1):
+            new_tail = new_tail.next
+            
+        new_head = new_tail.next
+        new_tail.next = None
+        tail.next = self.head
+        self.head = new_head
+        return self.head
+    
+    
+    
+    # flatenning of LL - ---  brute force method
+    def flattening_LL(self):
+        if not self.head:
+            return
+        
+        arr = []
+        temp = self.head
+        
+        while temp:
+            
+            # chck nodes side ways
+            if temp.next:
+                arr.append(temp.next)
+                
+            # check for child if: True then go deeper
+            if temp.child:
+                temp.next = temp.child
+                temp.child = None
+            elif arr:
+                temp.next = arr.pop()
+                
+            temp = temp.next 
+    
+        return self.head
+    
+     
     
     # display the LL in terminal 
     def display_forward(self):
@@ -154,8 +252,9 @@ ll.display_forward()
 
 # print("pairs of sum - ", ll.pairs_sum(6))      
 # print("optimal pairs sum - ", ll.optimal_pairs_sum(8))
-print(" remove duplicates in dll - ", ll.remove_duplic())
-         
+# print(" remove duplicates in dll - ", ll.remove_duplic())
+print("rotate ll from rifht by kth - ", ll.rotate_linkedlist(3))
+
 ll.display_forward()
         
         
