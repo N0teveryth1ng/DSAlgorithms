@@ -1,10 +1,12 @@
 # I will be continuing with medium probelms if DLL 
 
+
 class dNode:
     def __init__(self, val):
         self.val = val
         self.next = None
         self.prev = None    
+        self.random = None
         
 class Dlinkedlist:
     def __init__(self):
@@ -172,6 +174,10 @@ class Dlinkedlist:
         
     
     # rotate a linkedlist by kth elem right
+    """ 1 -> 2 -> 3
+             |
+             7 -> 8 -> 9 """
+         
     def rotate_linkedlist(self, k):
         
         if not self.head:
@@ -227,6 +233,63 @@ class Dlinkedlist:
     
         return self.head
     
+    
+    # optimal way of flatenning a LL - - - -  - iterative approach
+    # both optimal and brute force is almost same just its a bit of change in pointers
+    def optimal_flatenning(self):
+        
+        if not self.head:
+            return
+        
+        stack = []
+        temp = self.head
+        while temp:
+            if temp.child:
+                if temp.next:
+                  stack.append(temp.val)
+                temp.next = temp.child
+                temp.child = None   
+                
+            if not temp.next and stack:
+                stack.pop()
+                
+            temp = temp.next
+            
+        return self.head    
+    
+
+    # clone a LL with next and random pointers using hashing - - - [ better force ]
+    # it can be optimised but i will get confused with the pointers  - - i'll try to learn it later
+    def clone_rand(self):
+        
+        if not self.head:
+            return
+        
+        # map all the copies of the values in a node
+        old_new = {}
+        
+        temp = self.head
+        while temp:
+            old_new[temp] = dNode(temp.val)
+            temp = temp.next
+        
+        # connect the cloned nodes with original links
+        temp = self.head
+        while temp:
+            clone = old_new[temp]
+            clone.next = old_new.get(temp.next)
+            clone.random = old_new.get(temp.random)
+            temp = temp.next 
+            
+        # set the head of new node 
+        return old_new[self.head]
+    
+    
+        
+
+            
+    
+    
      
     
     # display the LL in terminal 
@@ -253,7 +316,12 @@ ll.display_forward()
 # print("pairs of sum - ", ll.pairs_sum(6))      
 # print("optimal pairs sum - ", ll.optimal_pairs_sum(8))
 # print(" remove duplicates in dll - ", ll.remove_duplic())
-print("rotate ll from rifht by kth - ", ll.rotate_linkedlist(3))
+# print("rotate ll from rifht by kth - ", ll.rotate_linkedlist(3))
+
+print("clone of a LL points to next and random - ", ll.clone_rand())
+
+
+
 
 ll.display_forward()
         
