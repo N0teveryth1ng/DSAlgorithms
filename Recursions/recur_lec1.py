@@ -1,6 +1,6 @@
 # We will be continuing with recursions and its problems in order to get a strong hold of it
 
-# My ATOI
+# My ATOI - 
 def my_atoi():
     
     s = " -42abc"
@@ -53,7 +53,26 @@ def pow_x_n():
     
     return res
 
-print(pow_x_n())
+# print(pow_x_n())
+
+
+# pow(x,n) - - - - leetcode 50 - - [ Got fucked while understanding and solving it  ]
+def pow_X_N(x, n):
+    def helper(x , n):
+        if x == 0:
+            return 0
+        if n == 0:
+            return 1
+        
+        res = helper(x, n // 2)
+        res = res * res
+        return x * res if n % 2 else res
+    
+    res = helper(x, abs(n))
+    return res if n >= 0 else 1 / res
+
+# print(pow_X_N(2, -3))
+
 
 
 
