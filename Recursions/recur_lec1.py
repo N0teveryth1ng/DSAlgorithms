@@ -75,5 +75,77 @@ def pow_X_N(x, n):
 
 
 
+# count good numbers ( odd-even sets)
+MOD = 10**9 + 1
+def predict_modPow(x,n):
+    
+    if n == 0:
+        return 1
+    
+    half = predict_modPow(x , n//2)
+    half = (half * half) % MOD
+    
+    if n % 2:
+        half = (half * x) % MOD
+        
+    return half
+
+def count_good_nums(n):
+    
+    even_pos = (n + 1) // 2
+    odd_pos = n // 2
+    
+    even_part = predict_modPow(5, even_pos)
+    odd_part = predict_modPow(4, odd_pos)
+    
+    return (even_part * odd_part) % MOD
+
+# print(count_good_nums(4))
 
 
+
+# sort a stack using recursion
+#  - - -  1. insert vals after sorting in stack in insert_sorted()
+#         2. sort stack after overall vals has been inserted in sort_stack()
+
+def insert_sorted(stack, value):
+    
+    if not stack and value > stack[-1]:
+        stack.append(value)
+        return
+    
+    temp = stack.pop()
+    insert_sorted(stack, temp)
+    stack.append(temp)
+    
+def sort_stack(stack):
+    
+    if len(stack) <= 1:
+        return
+    
+    temp = stack.pop()
+    sort_stack(stack)
+    insert_sorted(stack, temp)
+    
+    
+# reverse a stack using recursion - - - - - - - -  -  same a 
+def insert_at_bottom(stack, value):
+    
+    if not stack:
+        stack.append(value)
+        return
+    
+    temp = stack.pop()
+    insert_at_bottom(stack, value)
+    stack.append(temp)
+    
+def rev_stack(stack):
+    
+    if not stack > 1:
+        return
+    
+    temp = stack.pop()
+    rev_stack(stack)
+    insert_at_bottom(stack, temp)
+    
+    
