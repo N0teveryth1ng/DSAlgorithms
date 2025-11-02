@@ -148,4 +148,18 @@ def rev_stack(stack):
     rev_stack(stack)
     insert_at_bottom(stack, temp)
     
+
+# generate all binary strings - - - - - 
+def generate_binary_strs(n, current=""):
+    
+    if len(current) == n:
+        print(current)
+        return
+    
+    generate_binary_strs(n, current + "0")
+    generate_binary_strs(n, current + "1")
+    
+
+# print(generate_binary_strs(3))
+
     
