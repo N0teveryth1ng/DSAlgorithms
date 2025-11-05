@@ -159,7 +159,106 @@ def generate_binary_strs(n, current=""):
     generate_binary_strs(n, current + "0")
     generate_binary_strs(n, current + "1")
     
-
 # print(generate_binary_strs(3))
 
+
+# generate parenthese
+""" output  - ['((()))', '(()())', '(())()', '()(())', '()()()'] """ 
+def generate_pars(n):
+    store = []
+    def backtrack(current, open, close):
+        if len(current) == n * 2:
+            store.append(current)
+            return
+        
+        if open < n:
+            backtrack(current + "(", open + 1, close)
+            
+        if close < open:
+            backtrack(current + ")", open, close + 1)
+            
+    backtrack("", 0,0)
+    return store
+
+# print(generate_pars(3))
+    
+
+    
+# print all the subsets
+    
+
+    # MIND MAP for the suubsets
+    
+    #                       []
+    #                 /             \
+    #              [1]               []
+    #            /    \            /    \
+    #        [1,2]    [1]        [2]      []
+    #        /   \    / \        / \      / \
+    #  [1,2,3][1,2] [1,3][1]  [2,3] [2]   [3] []
+    
+    
+def subsets(nums):
+    res = []
+    subset = []
+    def dfs(i):
+        if i == len(nums):
+           res.append(subset.copy())
+           return
+       
+        # decision to include nums[i]
+        subset.append(nums[i])
+        dfs(i + 1)
+        
+        # decision to NOT include nums[i]
+        subset.pop()
+        dfs(i + 1)
+        
+    dfs(0)
+    return res  
+            
+
+# count the subsequence with sum K - - - - - - -
+def subsets_sum_k(i, nums, current, target, current_sum):
+        if i == len(nums):
+            if current == target:
+               print(current)
+            return 
+        
+        # choice 1 - include nums[i] 
+        current.append(nums[i])
+        subsets_sum_k(i+1, nums, current, target, current_sum + 1)
+        
+        # choice 2 - NOT include nums[i]
+        current.pop()
+        subsets_sum_k(i+1, nums, current, target, current_sum)
+        
+        
+        
+# check if there exists a subsequence with sum k
+def exists_subsets_k_sum(i, nums, target, current_sum):
+    if i  == len(nums):
+       return current_sum == target
+   
+    include = exists_subsets_k_sum(i+1, nums, target, current_sum + nums[i])
+    
+    if include:
+        return True
+    
+    exclude = exists_subsets_k_sum(i+1, nums, target, current_sum)   
+    return exclude
+
+nums = [3, 1, 5, 9, 12]
+target = 9
+# print(exists_subsets_k_sum(0, nums, target, 0))
+    
+    
+    
+# combination sum 
+def combination_sum():
+    
+    
+        
+    
+    
     
