@@ -254,11 +254,113 @@ target = 9
     
     
     
-# combination sum 
-def combination_sum():
+# combination sum  - - - - -  [LC 39]
+def combination_sum(candidates, target):
     
+    res = []
+    def backtrack(i, current, total):
+        
+        if total == target:
+            res.append(current.copy())
+            return
+        
+        if i >= len(candidates) or total >= target:
+            return
+        
+        current.append(candidates[i])
+        backtrack(i, current, total + candidates[i])
+        current.pop()
+    
+        backtrack(i+1, current, total)
+    backtrack(0, [], 0)
+    
+    
+    
+# combination sum - II
+def combination_sum_2(candidates, current, target):
+    
+    res = []
+    candidates.sort()
+    
+    def dfs(i, current, total):
+        
+        if total == target:
+            res.append(candidates[i])
+            return
+        
+        if i >= len(candidates) or total >= target:
+            return
+        
+        # include values
+        current.append(candidates[i])
+        dfs(i+1, current, total + candidates[i])
+        current.pop()
+        
+        # skip values
+        while i+1 < len(candidates) and candidates[i] == candidates[i+1]:
+            i += 1
+        dfs(i+1, current, total)
+
+    dfs(0, [], 0)
+    return res 
+
+
+# combination sum - III - (LC - 216)
+def combo_sum(nums, target):
+    
+    res = []
+    def combo_dfs(i, current, total):
+        
+        if len(current) == nums and total == target:
+            res.append(current.copy())
+            return
+        
+        if i >= len(nums) and total > target:
+            return
+        
+        # include vals
+        for num in range(i, 9):
+            current.append(num)
+            combo_dfs(num + 1, current, total + num)
+            current.pop()
     
         
+    combo_dfs(1, [], 0)
+    return res
+
+
+            
     
+# subset sum - II
+def subset_sum_II(candidates):
+    
+    res = []
+    candidates.sort()
+    
+    def sub_dfs(i, current, total):
+        
+        if i == len(nums):
+            res.append(current.copy())
+            return
+        
+        # include values
+        current.append(candidates[i])
+        sub_dfs(i+1, current)
+        current.pop()
+        
+        # skip the duplicates vals
+        while i+1 < len(candidates) and candidates[i] == candidates[i+1]:
+            i += 1
+        
+        # exlcude values
+        sub_dfs(i+1, current)
+        
+    sub_dfs(0, [])
+    return res 
+
+
+
+# subset sum - II
+def subset_sum_II():
     
     
