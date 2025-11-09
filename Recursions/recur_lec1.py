@@ -1,5 +1,10 @@
 # We will be continuing with recursions and its problems in order to get a strong hold of it
 
+
+""" BOTH LECTURE 1,2 IS DONE HERE """
+
+
+# ----------------- LECTURE - 1 --------------------
 # My ATOI - 
 def my_atoi():
     
@@ -149,6 +154,14 @@ def rev_stack(stack):
     insert_at_bottom(stack, temp)
     
 
+
+
+
+
+
+
+
+# ------------------------ LECTURE - 2    -----------------------
 # generate all binary strings - - - - - 
 def generate_binary_strs(n, current=""):
     
@@ -360,7 +373,33 @@ def subset_sum_II(candidates):
 
 
 
-# subset sum - II
-def subset_sum_II():
+# letter combinations of a ph number  --  leetcode 17
+def letter_combo(digits):
+    res = []
     
+    if not digits:
+        return []
     
+    phone_map = {
+            "2": "abc", "3": "def", "4": "ghi",
+            "5": "jkl", "6": "mno", "7": "pqrs",
+            "8": "tuv", "9": "wxyz"
+    }
+    
+    def sum_two(i, current):
+        
+        if i == len(digits):
+            res.append("".join(current))
+            return
+        
+        # map it using hashtable
+        for num in phone_map[digits[i]]:
+            current.append(num)
+            sum_two(i+1, current)
+            current.pop()
+            
+    sum_two([], 0)
+    return res 
+
+
+

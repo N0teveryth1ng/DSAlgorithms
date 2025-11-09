@@ -137,3 +137,6 @@ TRACKING MY PROGRESS - - -
 
 
 5.  Recursions 
+    - lec - 1 was good but need more strong hold in Recursion
+    - lec - 2 is finshed but has to be looking more often (all are same)
+    - lec - 3 
