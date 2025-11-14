@@ -71,35 +71,94 @@ board = [
         
         
         
-# N - Queens [LC - 51]
+# N - Queens [LC - 51] - - - -  [ didn't undetstood shit about this topic]
 def n_queens(n):
     
-    rows, cols = len(n), len(n[0])
+    res = []
+    board = [["."] * n for _ in range(n)]
     
-    def dfs(r,c,i):
-        
-        if i == len(n):
-            return True
-        
-        if r > 0 or  c > 0 or r > len(rows) or c > len(cols):
-            return False
-        
-        found = ( dfs(r + 1, c, i+1) or
-                  dfs(r - 1, c, i+1) or
-                  dfs(r, c + 1, i+1) or
-                  dfs(r, c - 1, i+1))
-        
-        return found
-    
-    for r in range(rows):
-        for c in range(cols):
-            if [r][c] == n[0]:
-                return True
-            
-    return False
+    col = set()
+    pos_diag = set()  # r + c
+    neg_diag = set()  # r - c 
 
+    def backTrack(r):
+        if r == n:
+            copy = ["".join(row) for row in board]
+            res.append(copy)
+            return
+        
+        for c in range(n):
+            if c in col or  (r+c) in pos_diag or (r-c) in neg_diag:
+                continue
+            
+            col.add(c)
+            pos_diag.add(r+c)
+            neg_diag.add(r-c)
+            board[r][c] = "Q"
+            
+            backTrack(r + 1)
+            
+            col.remove(c)
+            pos_diag.remove(r+c)
+            neg_diag.remove(r-c)
+            board[r][c] = "."
+        
+    backTrack(0)
+    return res
+
+# print(n_queens(4))
+     
+
+# rat in a maze - - - -  [ have to reach form (0,0) to (n-1) ]
+def rat_maze(maze):
     
+    n = len(maze)
+    res = []
+    path = []
     
- 
-         
+    visited = [[False] * n for _ in range(n)]
+    
+    def dfs(r,c):
+        
+        # destination reached
+        if r == n-1 and c == n-1:
+            res.append("".join(path))
+            return
+        
+        # mark it visited
+        visited[r][c] = True
+        
+        # DLRU - dowm, left, right, up
+        directions = [
+            (1,0,"D"),
+            (0,1,"R"),
+            (0,-1,"L"),
+            (-1,0,"U")
+        ]
+        
+        
+        # direction rows and drection cols
+        for dr, dc, move in directions:
+            nr = r + dr  # new rows 
+            nc = c + dc  # new cols
+            
+            if 0 <= nr < 0 and 0 <= nc < n and maze[nc][nr] == 1 and not visited[nr][nc]:
+                path.append(move)
+                dfs(r,c)
+                path.pop()
+                
+        # backtrack it 
+        visited[r][c] = False
+        
+    
+    if maze[0][0] == 1:
+        dfs(0,0)
+        
+    return res  
+        
+
+
+# word break
+def word_break():
+    
     
