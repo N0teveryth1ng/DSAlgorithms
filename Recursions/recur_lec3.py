@@ -158,7 +158,102 @@ def rat_maze(maze):
         
 
 
-# word break
-def word_break():
+# word break --------------- [ DIDNT UNDERSTOOD SHIT ABOUT THIS  ]
+def word_break(s, wordBreak):
+    
+    dp = [False] * (len(s) + 1)  
+    dp[len(s)] = True
+    
+    for i in range(len(s) - 1, -1, -1):
+        for j in wordBreak:
+            if (i + len(j)) <= len(s) and s[i : i + len(j)] == j:
+                if dp[i + len(j)]:
+                   dp[i] = True
+                   break
+            
+    return dp[0]
+            
+            
+# M coloring problem
+def m_coloring():
+    
+    # check for safe move
+    def is_safe(graph, color, node, col):
+        for neighbour in graph[node]:
+            if col[neighbour] == color:
+                return False
+        return True
+    
+    # run recursion
+    def recursion(node, graph, m, col):
+        
+        if node == len(graph):
+            return True
+        
+        for i in range(1, m+1):
+            if is_safe(graph, node, col, m):
+                col[node] = i
+                
+                if recursion(node + 1, graph, m, col):
+                    return True          
+                col[node] = 0
+                
+        return False
+                
+                
+    # graph_coloring
+    def graph_color(graph, m):
+        
+        col = [0] * len(graph)
+        return recursion(0, graph, m, col)            
+        
     
     
+# sudoko solver - - - -  [ LC - 37 ]
+def is_valid(board, rows, cols, c):
+    
+    for i in range(1, 9):
+        if board[rows][i] == c:
+            return False
+        
+        if board[i][cols] == c:
+            return False
+        
+    # 3x3 box cehck
+    box_r = (rows // 3) * 3
+    box_c = (cols // 3) * 3
+    
+    for i in range(box_r, box_r + 3):
+        for j in range(box_c, box_c + 3):
+            if board[i][j] == c:
+              return False
+          
+    return True
+    
+
+def soduko_solver(board):
+    
+    for i in range(9):
+        for j in range(9):
+            
+            if board[i][j] == ".":  
+              for c in "123456789":            
+                if is_valid(board, i, j, c):
+                    board[i][j] = c
+                   
+                    if soduko_solver(board):
+                        return True
+                    
+                    board[i][j] = "."
+                    
+              return False
+            
+    return True
+         
+
+# print(soduko_solver(board))
+
+
+# expression and operators
+def 
+
