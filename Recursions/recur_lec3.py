@@ -254,6 +254,22 @@ def soduko_solver(board):
 # print(soduko_solver(board))
 
 
-# expression and operators
-def 
+# expression and operators - - - - - - - [ LC - 282 ]
+def expression_opt(num, target):
+    
+    res = []
+    n = len(num) 
+        
+    def solve(index, path, calcVal, lastNum):
+        
+        if index == n:
+            if calcVal == target:
+               res.append(path)
+            return
+        
+        
+        """  NOT DONE DUE TO LACK OF UNDERSTANDING  """   
+            
+           
+            
 
