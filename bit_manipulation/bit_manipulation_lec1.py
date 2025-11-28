@@ -28,5 +28,90 @@ def convert_decimal(n):
     
 
 
+# if i is 1 then its set if 0 then not  
+def set_not(n, i):
+    
+    if n & ( 1 << i) != 0:
+        print("1 is set")
+    else:
+        print("0 is not set")
+    
+    
+# print(set_not(13,1))
+    
+    
+def right_shift(n, i):
+    
+        
+    if n & ( 1 >> i) != 0:
+        print("1 is set")
+    else:
+        print("0 is not set")
 
-     
+# print(right_shift(13,3))
+
+
+# clear the ith bit
+def clear_ith(n, i):
+    
+    if n & ~(1 << i) != 0:
+        print(f"{i} is set")
+    else:
+        print("not set")
+        
+# print(clear_ith(13,3))
+
+
+# toggle the ith bit
+def toggle_bit(n,i):
+    return n ^ ( 1 << i)
+
+# print(toggle_bit(13,2))
+
+
+# remove the last set bit
+def remove_last_bit(n):
+    return n & (n-1)
+
+# print(remove_last_bit(13))
+
+
+# check if the num is power of 2 or not
+def check_pow(n):
+    
+    if n & (n-1) == 0:
+        print(f"{n} True")
+    else:
+        print(f"{n} False")
+        
+# print(check_pow(13))
+
+
+
+# count the number of set bits
+def count_numset_bits(n):
+    
+    cnt = 0
+    while n > 0:
+        if n % 2 == 1:
+            cnt += 1
+        n = n//2
+           
+    return cnt
+    
+# print(count_numset_bits(15))
+
+
+
+# swap the nums of two
+def swap_nums(a,b):
+    swap = a,b = b,a
+    return swap
+
+# print(swap_nums(2,3))
+
+
+# divide 2 nums without dividing opt
+def divide_opt(n, i):
+    
+    if 
