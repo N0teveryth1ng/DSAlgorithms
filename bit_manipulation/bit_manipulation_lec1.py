@@ -112,6 +112,42 @@ def swap_nums(a,b):
 
 
 # divide 2 nums without dividing opt
-def divide_opt(n, i):
+def divide_opt(n, d):
     
-    if 
+    if n == d:
+        return 1
+    
+    sign = not ((n < 0) ^ (d < 0))
+    
+    n = abs(n)
+    d = abs(d)
+    
+    ans = 0
+    
+    while n >= d:
+        
+        temp = d
+        cnt = 1
+        
+        while temp << 1 <= n:
+            temp <<= 1
+            cnt <<= 1
+            
+        n -= temp
+        ans += cnt
+        
+    ans = ans if sign else -ans
+    
+    int_max = 2**31 - 1
+    int_min = -2**31
+    
+    if ans < int_min:
+        return int_min
+    if ans > int_max:
+        return int_max
+        
+    return ans
+
+# print(divide_opt(43,7))
+
+
