@@ -79,3 +79,88 @@ def single_nums(nums):
 # print(single_nums([4,6,4]))
 
 
+
+
+# XOR of nums in given range
+def xor_range(n):
+    
+    ans = 0
+    for i in range(n+1):
+        ans = ans ^ i
+    return ans
+
+# print(xor_range(5))
+
+# - - - - optimla version xor range
+def compact_xor(n):
+    
+    if n % 4 == 1:
+        return 1
+    elif n % 4 == 2:
+        return n+1
+    elif n % 4 == 3:
+        return 0
+    else:
+        return n
+    
+# print(compact_xor(3))
+        
+#  - - - reverse the LEFT and RIGHT xor 
+def righting(L, R):
+    
+    if L > R:
+        L, R = R, L 
+    return compact_xor(L-1) ^ compact_xor(R)    
+
+# print(righting(3, 9))
+        
+        
+
+# find the two nums appearing odd num of times 
+def odd_nums():
+    
+    nums = [2,4,2,6,3,7,7,3]
+    
+    freq = {}
+    for i in nums:
+        if i in freq:
+            freq[i] += 1
+        else:
+            freq[i] = 1
+    
+    res = []
+    for j in freq:
+        if freq[j] % 2 != 0:
+            res.append(j)
+            
+    return res
+    
+# print(odd_nums())
+
+# optimal approach of xor method 
+def xor_method():
+    
+    nums = [2,4,2,6,3,7,7,3]
+    
+    ans = 0
+    for i in nums:
+        ans = ans ^ i
+        
+        diff = (ans) & (-ans)
+        
+        buck1 = 0
+        buck2 = 0
+        
+        for j in nums:
+            if j & diff:
+                buck1 ^= j
+            else:
+                buck2 ^= j
+                
+                
+    return buck1, buck2
+
+# print(xor_method())
+
+
+
