@@ -112,18 +112,43 @@ def kth_factor_of_n():
 # sieve of eratosthenes - - - - - count all primes 
 def sieve(n):
     
-    prime = [True] * (n+1)
-    prime[0] = prime[1] = False
-    p = 2
+    if n <= 2:
+        return 0
     
-    while p*p <= n:
-        if prime[p]:  
-            for i in range(p*p, n+1, n):
+    prime = [True] * n
+    prime[0] = prime[1] = False
+    
+    p = 2
+    while p*p < n:
+        if prime[p]:
+            for i in range(p*p, n, p):
                 prime[i] = False
-        p += 1
-        
-    return [i for i in range(n+1) if prime[i]]
+            p+=1
+            
+    return sum(prime)
 
-# print(sieve(10))
+# print(sieve(1))
 
 
+
+# smallest prime factor - - - most third class Q's ever i have done so far 
+def smalles_prime_factor(n):
+    
+    spf = [0] * (n+1)
+    
+    for i in range(2, n+1):
+        if spf[i] == 0:
+            spf[i] = i
+            for j in range(i*i, n+1, i):    
+                if spf[j] == 0:
+                    spf[j] = i
+                    
+    return spf
+
+# print(smalles_prime_factor(8))
+
+
+
+    
+    
+    
