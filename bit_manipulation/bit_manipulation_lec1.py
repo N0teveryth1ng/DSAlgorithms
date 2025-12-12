@@ -41,7 +41,6 @@ def set_not(n, i):
     
     
 def right_shift(n, i):
-    
         
     if n & ( 1 >> i) != 0:
         print("1 is set")
