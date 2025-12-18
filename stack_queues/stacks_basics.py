@@ -58,17 +58,135 @@ class Queue:
         return val
         
             
+
+
+
+
+
+# built in deque
+from collections import deque
+
+# LC - 225  - - - implement stack using queue
+class Mystack:
+    def __init__(self):
+        self.q = deque()
+    
+    def push(self, x):
+        self.q.append(x)
         
+        for _ in range(len(self.q) - 1):
+            self.q.append(self.q.popleft())
+        
+    def pop(self):
+        return self.q.popleft()
+    
+    def top(self):
+        return self.q[0]
+    
+    def empty(self):
+        return len(self.q) == 0
+         
+
+
+
+#  - - - LC - 232 [implement queue using stack ]
+class MyQueue:
+    def __init__(self):
+        self.s1 = []
+        self.s2 = []
+        
+    def push_stk(self, x):
+        self.s1.append(x)
+        
+    def pop_stk(self):
+        if not self.s2:
+            while self.s1:
+                self.s2.append(self.s1.pop())
+        return self.s2.pop()
+    
+    def peek(self):
+        if not self.s2:
+            while self.s1:
+                self.s2.append(self.s1.pop())
+        return self.s2[-1]
+    
+    def empty(self):
+        return max(len(self.s1), len(self.s2)) == 0
+    
+      
+
+
+
 
 
 # test cases - - - [stack with size 6]
-val = Queue(6)
-val.enqueue(5)
-val.enqueue(8)
-val.enqueue(9)
-val.enqueue(2)
+# val = Queue(6)
+# val.enqueue(5)
+# val.enqueue(8)
+# val.enqueue(9)
+# val.enqueue(2)
 
 
-print(val.arr) 
-print(val.size)
+# print(val.arr) 
+# print(val.size)
 
+
+
+
+
+# implementing stack using LL
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+class Stack_LL:
+    def __init__(self):
+        self.head = None
+    
+    def push_ll(self, x):
+        node = Node(x)
+        node.next = self.head
+        self.head = node
+        
+    def pop(self):
+        if not self.head:
+            raise Exception("nothing to remove")
+        val = self.head.val
+        self.head = self.head.next
+        return val
+        
+    def peek(self):
+        if not self.head:
+            raise Exception('nothing to peek')
+        return self.head.val
+        
+    def empty(self):
+        return self.head is None
+    
+    
+
+# implement queue using LL - FIFO
+class Queue_LL:
+    def __init__(self):
+        self.front = None
+        self.rear = None
+        self.head = None
+        
+    def push_enque(self, x):
+        if not self.front:
+            raise Exception("Nothing to Queue")
+        
+        new = Node(x)
+        self.rear[new]
+        
+    def pop_deque(self):
+        if not self.head:
+            raise Exception("LL cleared")
+          
+        val = self.front[self.head]
+        return val
+
+        
+        
+        

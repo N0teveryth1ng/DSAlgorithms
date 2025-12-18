@@ -136,7 +136,7 @@ TRACKING MY PROGRESS - - -
 
 
 
-5.  Recursions 
+5.  Recursions ( break the problem into sub problems and run the same fucntion again )
     - lec - 1 was good but need more strong hold in Recursion
     - lec - 2 is finshed but has to be looking more often (all are same)
     - lec - 3 
@@ -147,3 +147,12 @@ TRACKING MY PROGRESS - - -
 7. Recursion
 
 8. Bit manipulation - - - 
+
+9.  STACK - always uses a top pointer and insert vals from one way by increasing ---->
+    and deletes based by decrementing the top pointer <----- 
+
+    QUEUE - data can be inserted using one way = by start/front pointer and incrementing it 
+            same it can be deleted using end/rear pointer by incrementing it
+
+     
+
