@@ -113,6 +113,8 @@ class MyQueue:
     def empty(self):
         return max(len(self.s1), len(self.s2)) == 0
     
+    
+    
       
 
 
@@ -134,7 +136,7 @@ class MyQueue:
 
 
 
-# implementing stack using LL
+# implementing stack using LL - FIFO
 class Node:
     def __init__(self, val):
         self.val = val
@@ -174,19 +176,51 @@ class Queue_LL:
         self.head = None
         
     def push_enque(self, x):
-        if not self.front:
-            raise Exception("Nothing to Queue")
-        
         new = Node(x)
-        self.rear[new]
+        if not self.front:
+           self.front = new
+           self.rear = new
+        else:
+           self.rear.next = new
+           self.rear = new
+        
         
     def pop_deque(self):
-        if not self.head:
+        if not self.front:
             raise Exception("LL cleared")
           
-        val = self.front[self.head]
-        return val
+        data = self.front.val
+        self.front = self.front.next
+        
+        if not self.front:
+            self.rear = None
+            
+        return data
+
+
+
+
+def valid_par(s):
+    stack = []
+    pairs = { ')': '(', ']': '[', '}': '{' }
+    
+    for i in s:
+        if i in pairs:
+            if stack and stack[-1] == pairs[i]:
+                stack.pop()
+            else:
+                return False
+        else:
+            stack.append(i)
+            
+    return not stack
 
         
+# print(valid_par("(()"))
+    
         
-        
+def push(self, x):
+    
+    self.s1.append(x)
+    if not self.s2 and x <= self.s2:
+        s2.append(x) 
