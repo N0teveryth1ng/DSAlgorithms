@@ -219,8 +219,27 @@ def valid_par(s):
 # print(valid_par("(()"))
     
         
-def push(self, x):
+# LC - 151
+class minstack:
+    def __init__(self):
+        self.stack = []
+        self.minStack = []
+        
+    def push(self, x):
+        self.stack.append(x)
+        if not self.minStack or x <= self.minStack[-1]:
+            self.minStack.append(x)
+            
+    def pop(self):
+        val = self.stack.pop()
+        if val == self.minStack[-1]:
+            self.minStack.pop()
+        
+    def peek(self):
+        return self.stack[-1]
     
-    self.s1.append(x)
-    if not self.s2 and x <= self.s2:
-        s2.append(x) 
+    def is_min(self):
+        return self.minStack[-1]
+    
+    
+    
