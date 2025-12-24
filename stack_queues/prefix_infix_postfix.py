@@ -142,49 +142,53 @@ def postfix_to_infix(s):
 
 
 
-# infix to prefix 
-def infix_to_prefix(s):
+# infix to prefix  -- - - - - - [ most mf Q's ever in this segment ]
+def infix_to_prefix(expr):
+    
+    expr = expr[::-1]
+    swap = []
+    for i in expr:
+        if i == '(':
+            swap.append(')')
+        elif i == ')':
+            swap.append('(')
+        else:
+            swap.append(i)
+            
+    expr = ''.join(swap)
     
     stack = []
-    output = []
+    ans = []
     
     precedence = {
-        '+' : 1,
-        '-' : 1,
-        '*' : 2, 
-        '/' : 2, 
-        '^' : 3
+        
+        '+':1,
+        '-':1, 
+        '*':2,
+        '/':2,
+        '^':3
     }
     
-    
-    for i in range(len(s)-1, -1, -1):
-    
-        i = s[i]
-
+    for i in expr:
         if i.isalnum():
-            output.append(i)
+            ans.append(i)
             
         elif i == '(':
-            stack.append(i)
+            stack.append(i)    
             
         elif i == ')':
             while stack and stack[-1] != '(':
-                output.append(stack.pop())
+                ans.append(stack.pop())
             stack.pop()
-            
         else:
-            while (stack and stack[-1] != '(' and precedence[stack[-1]] >= precedence[i]):  
-                output.append(stack.pop())
-            stack.append()
+            while (stack and stack[-1] != '(' and precedence[stack[-1]] > precedence[i]):
+                ans.append(stack.pop())
+            stack.append(i)
             
     while stack:
-        output.append(stack.pop())
+        ans.append(stack.pop())
         
-        
-    return reversed(''.join(output))
+    return ''.join(ans[::-1])
 
-
-
-print(infix_to_prefix("a+b*c"))
+# print(infix_to_prefix("a+b*c"))
             
-    
