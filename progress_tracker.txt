@@ -154,5 +154,10 @@ TRACKING MY PROGRESS - - -
     QUEUE - data can be inserted using one way = by start/front pointer and incrementing it 
             same it can be deleted using end/rear pointer by incrementing it
 
-     
+    ATTENTION this may come - 1. infix to prefix
+                2. infix to postfix
 
+    
+
+
+10. 
