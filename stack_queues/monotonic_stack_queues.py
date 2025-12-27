@@ -93,6 +93,9 @@ def next_big_elem_optimal(s):
 
 
 
+
+
+
 # next smaller element  - - brute force [1]
 def small_elem(s):
     
@@ -144,7 +147,8 @@ def small_element(s):
         idx = i % n
         while stack and s[idx] < s[stack[-1]]:
             popped = stack.pop()
-            res[popped] = s[idx]
+            if popped != idx:
+               res[popped] = s[idx]
             
         
         if i < n:
@@ -155,3 +159,28 @@ def small_element(s):
 # print(small_element([1,6,3,9]))
         
         
+        
+# next small element  
+def next_small_elem(s):
+    
+    stack = []
+    n = len(s)
+    res = [-1] * n
+    
+    for i in range(2 * n-1, -1, -1):
+        idx = i % n
+        
+        while stack and stack[-1] >= s[idx]:
+            stack.pop()
+            
+        if stack:
+            if i < n:
+                res[idx] = stack[-1]
+            
+        stack.append(s[idx])
+            
+    return res
+
+# print(next_small_elem([1,6,3,9]))
+
+
