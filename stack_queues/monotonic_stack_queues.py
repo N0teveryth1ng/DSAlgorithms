@@ -284,3 +284,31 @@ def rain_water_optimal(height):
 
 
 
+# sum of subarray minimums - - - [kadane's algorithm]
+def sum_subarray():   # maximum subarray
+    arr = [3,-1,2,4]
+    
+    current = arr[0]
+    min_sum = arr[0]
+      
+    for i in arr[1:]:
+       current = min(i, current + i)
+       min_sum = min(min_sum, current)
+       
+    return min_sum 
+
+# print(sum_subarray())    
+
+# minimum subarray
+def maxSum_subarray(arr):
+    curr = arr[0]
+    max_sum = arr[0]
+    n = len(arr)
+    
+    for i in range(1, n):
+        curr = max(arr[i], curr + arr[i])
+        max_sum = max(max_sum, curr)
+        
+    return max_sum
+
+# print(maxSum_subarray([3,-1,2,4]))
