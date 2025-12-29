@@ -284,7 +284,7 @@ def rain_water_optimal(height):
 
 
 
-# sum of subarray minimums - - - [kadane's algorithm]
+# - - - [kadane's algorithm]
 def sum_subarray():   # maximum subarray
     arr = [3,-1,2,4]
     
@@ -311,4 +311,98 @@ def maxSum_subarray(arr):
         
     return max_sum
 
-# print(maxSum_subarray([3,-1,2,4]))
+print(maxSum_subarray([3,1,2,4]))
+
+
+
+# subarray of the minimums - - brute force approach   
+def subarray_mins(arr):
+    
+    n = len(arr)
+    res = 0
+    
+    for i in range(n):
+        for j in range(i, n):
+           sub = arr[i:j+1]
+           res += min(sub)
+            
+    return res
+
+# print(subarray_mins([3,1,2,4]))
+
+
+# subarray of minimums - - - optimal approach
+def subarr_mins(arr):
+    
+    n = len(arr)
+    MOD = 10**9 + 7
+    
+    # find left smaller element 
+    stack = [] 
+    left = [0] * n
+    
+    for i in range(n):
+        while stack and arr[stack[-1]] > arr[i]:
+            stack.pop()
+            
+        if not stack:
+            left[i] = i + 1
+        else:
+            left[i] = i - stack[-1]
+            
+        stack.append(i)
+        
+    
+    # find right smaller elements 
+    stack = []
+    right = [0] * n
+    
+    for i in range(n-1, -1, -1):
+        
+        while stack and arr[stack[-1]] >= arr[i]:
+            stack.pop()
+            
+        if not stack:
+            right[i] = n - i
+        else:
+            right[i] = stack[-1] - i
+            
+        stack.append(i)
+        
+        
+    # calculate total 
+    total = 0
+    for i in range(n):
+        total += arr[i] * left[i] * right[i]
+        
+    return total % MOD
+
+# print(subarr_mins([3, 1, 2, 4]))
+
+
+
+# asteriod collision position - brute force  
+def prevent_collision(arr):    
+    stack = []
+    
+    i = 0
+    
+    for i in arr:
+        while stack and stack[-1] > 0 and i < 0:
+           if stack[-1] < abs(i):
+               stack.pop()
+               continue
+           elif stack[-1] == abs(i):
+                stack.pop()
+                break
+           else:
+               break 
+           
+        else:
+            stack.append(i)
+            
+    return stack
+
+# print(prevent_collision([5,10,-5]))
+
+
