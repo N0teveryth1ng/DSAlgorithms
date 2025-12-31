@@ -299,6 +299,8 @@ def sum_subarray():   # maximum subarray
 
 # print(sum_subarray())    
 
+
+
 # minimum subarray
 def maxSum_subarray(arr):
     curr = arr[0]
@@ -311,7 +313,7 @@ def maxSum_subarray(arr):
         
     return max_sum
 
-print(maxSum_subarray([3,1,2,4]))
+# print(maxSum_subarray([3,1,2,4]))
 
 
 
@@ -331,7 +333,7 @@ def subarray_mins(arr):
 # print(subarray_mins([3,1,2,4]))
 
 
-# subarray of minimums - - - optimal approach
+# subarray of minimums - - - optimal approach [907]
 def subarr_mins(arr):
     
     n = len(arr)
@@ -381,10 +383,10 @@ def subarr_mins(arr):
 
 
 
-# asteriod collision position - brute force  
+
+# asteriod collision position - optimal approach  
 def prevent_collision(arr):    
     stack = []
-    
     i = 0
     
     for i in arr:
@@ -404,5 +406,176 @@ def prevent_collision(arr):
     return stack
 
 # print(prevent_collision([5,10,-5]))
+
+
+
+
+# ṣum of subarrays ranges 
+def sum_subarrs_range(arr):
+    
+    sum = 0
+    n = len(arr)
+    for i in range(n):
+        smallest = arr[i]
+        largest = arr[i]
+        for j in range(i+1, n):
+            largest = max(largest, arr[j])
+            smallest = min(smallest, arr[j])
+                        
+            sum = sum + (largest - smallest)
+            
+    return sum
+
+# print(sum_subarrs_range([1,3,3]))
+
+
+
+# sum of subarrays range optimal  - - - - [just implement leetcode 907 twice]
+def subarrays_sum_range(arr):
+    
+    # finding sum of maxs
+    def sums_maxs(arr):
+            
+        n = len(arr) 
+        MOD = 10**9+7
+        
+        # left traverse elems
+        stack = [] 
+        left = [0] * n
+       
+        for i in range(n):
+            if stack and arr[stack[-1]] < arr[i]:
+                stack.pop()
+                
+            if not stack:
+                left[i] = i + 1
+            else:
+                left[i] = i - stack[-1]
+                
+            stack.append(i)
+          
+          
+        # right traverse elems
+        stack = []
+        right = [0] * n
+        
+        for i in range(n-1, -1, -1):
+            if stack and arr[stack[-1]] <= arr[i]:
+                stack.pop()
+                
+            if not stack:
+                right[i] = n - i
+            else:
+                right[i] = stack[-1] - i
+                
+            stack.append(i)
+            
+            
+        # final evaluation 
+        sums = 0
+        for i in range(n):
+            sums += arr[i] * left[i] * right[i]
+        return sums  
+    
+    
+    # finding range of minimums 
+    def sums_mins(arr):
+        n = len(arr)
+        
+        # left iteration 
+        stack = []
+        left = [0] * n
+        
+        for i in range(n):
+            while stack and arr[stack[-1]] > arr[i]:
+                stack.pop()
+                
+            if not stack:
+                left[i] = i + 1
+            else:
+                left[i] = i -  stack[-1]
+                
+            stack.append(i)
+            
+            
+        # right iteration 
+        stack = []
+        right = [0] * n
+        
+        for i in range(n-1, -1, -1):
+            while stack and arr[stack[-1]] >= arr[i]:
+                stack.pop()
+                
+            if not stack:
+                right[i] = n - i
+            else:
+                right[i] = stack[-1] - i
+                
+            stack.append(i)
+            
+        
+        sums1 = 0
+        for i in range(n):
+            sums1 += arr[i] * left[i] * right[i]
+        return sums1
+    
+    
+    # final evaulation 
+    max_sum = sums_maxs(arr)
+    min_sum = sums_mins(arr)
+    sums_of_range = max_sum - min_sum
+    return sums_of_range
+
+# print(subarrays_sum_range([1,2,3]))
+                
+                
+
+# remove Kth digits - - - brute force [LC - 402]
+def remove_Kth_digits(arr, k):
+    
+    stack = list(arr)
+    
+    while k > 0:
+        i = 0
+        
+        while i < len(stack) - 1:
+            if stack[i] > stack[i+1]:
+                stack.pop(i)
+                k -= 1
+                break
+            i += 1
+            
+        else:
+            stack.pop()
+            k -= 1
+    
+    result = ''.join(stack).lstrip('0')
+    return result if result else "0"        
+    
+# print(remove_Kth_digits("1432219", 3))
+
+
+
+# remove kth element  - - - optimal approach - [LC - 402]
+def kth_remove(arr, k):
+    stack = [] 
+    
+    #  
+    for i in arr:
+        while stack and stack[-1] > i and k > 0:
+            stack.pop()
+            k -= 1
+            
+        stack.append(i)
+        
+    # if still tokens left 
+    if k > 0:
+        stack = stack[:-k] 
+            
+    # convert to string 
+    result = ''.join(stack).lstrip('0')
+    return result if result else "0"
+
+# print(kth_remove("1432219", 3))
 
 
