@@ -184,6 +184,7 @@ def next_small_elem(s):
 # print(next_small_elem([1,6,3,9]))
 
 
+# previous smaller element
 def prev_small(s):
     
     stack = []
@@ -579,3 +580,53 @@ def kth_remove(arr, k):
 # print(kth_remove("1432219", 3))
 
 
+
+
+
+# largest rectangle - -  - [LC-84]  
+# PSE and NSE for traversing and tracing elemens 
+def large_rectangle(arr):
+    
+    n = len(arr)
+    if n == 0:
+        return 0
+    
+    # find next small elem
+    next_small = [n] * n
+    stack = []
+    
+    for i in range(n):
+        while stack and arr[stack[-1]] > arr[i]:
+           popped = stack.pop()
+           next_small[popped] = i
+        stack.append(i)
+        
+        
+    # find prev small elem 
+    prev_small = [-1] * n 
+    stack1 = []
+    
+    for i in range(n-1,-1,-1):
+        while stack1 and arr[stack1[-1]] > arr[i]:
+            popped1 = stack1.pop()
+            prev_small[popped1] = i         
+        stack1.append(i)
+        
+        
+    # evaluation  
+    max_area = 0
+    for i in range(n):
+        width = next_small[i] - prev_small[i] - 1
+        area = arr[i] * width
+        max_area = max(max_area, area)
+
+    return max_area
+
+# print(large_rectangle([2,1,5,6,2,3]))    
+
+
+
+# largest rectangle  - - -  optimal aapproach
+def large_rectangle(arr):
+    
+    
