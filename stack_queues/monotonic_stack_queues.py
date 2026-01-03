@@ -580,6 +580,23 @@ def kth_remove(arr, k):
 # print(kth_remove("1432219", 3))
 
 
+# daily temperatures - [LC - 739]
+def daily_temps(temp):
+    n = len(temp)
+    res = [0] * n
+    stack = []
+    
+    for i in range(n):
+        while stack and temp[i] > temp[stack[-1]]:
+            popped = stack.pop()
+            res[popped] = i - popped
+            
+        stack.append(i)
+        
+    return res
+
+# print(daily_temps([30,40,50,60]))
+
 
 
 
@@ -626,7 +643,26 @@ def large_rectangle(arr):
 
 
 
-# largest rectangle  - - -  optimal aapproach
-def large_rectangle(arr):
+# largest rectangle  - - -  optimal approach
+def largestRectangleArea(heights):
+    stack = []
+    max_area = 0
     
+    # Add sentinel to force processing of all bars
+    heights.append(0)
     
+    for i, h in enumerate(heights):
+        while stack and h < heights[stack[-1]]:
+            height = heights[stack.pop()]
+            width = i if not stack else i - stack[-1] - 1
+            max_area = max(max_area, height * width)
+        stack.append(i)
+    
+    return max_area
+
+# print(largestRectangleArea([2,1,5,6,2,3]))  
+
+
+
+# maximal rectangle
+
