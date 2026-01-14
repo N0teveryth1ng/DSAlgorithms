@@ -164,5 +164,91 @@ def stock_planner(arr):
 
 
 
-# 
+#  LRU cache
+# method:  
+# 1. hashMap to find address 
+# 2. DLL for inseting/removing
+
+class DLL_LRU:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.hash_map = {}
+        self.head = None
+        self.tail = None
+        
+    class Node:
+        def __init__(self, key, val):
+            self.key = key
+            self.val = val   
+            self.prev = None
+            self.next = None
     
+    def insert(self, node):
+        node.next = self.head
+        node.prev = None
+        
+        if self.head:
+            self.head.prev = node
+        self.head = node
+        
+        if not self.tail:
+            self.tail = node
+        
+    
+    def remove(self, node):
+        if node.prev:
+            node.prev.next = node.next
+        else:
+            self.head = node.next 
+            
+        if node.next:
+            node.next.prev = node.prev
+        else:
+            self.tail = node.prev
+            
+        
+        node.prev = None
+        node.next = None
+        
+        
+    
+    def get(self, key):
+        if key in self.hash_map:
+            self.remove(self.hash_map[key])
+            self.insert(self.hash_map[key])
+            return self.hash_map[key].val
+        return -1
+        
+        
+    def put(self, key, value):
+        # updating first -- insrt the new elem in prev index
+        if key in self.hash_map:
+            node = self.hash_map[key]
+            node.val = value
+            
+            self.remove(node)   #remove the old val 
+            self.insert(node)   #insert from front for updation  
+            
+            
+        # insertion - insert a new elem at new index 
+        else:
+            if len(self.hash_map) == self.capacity:
+               lru_cache = self.tail
+               self.remove(lru_cache)
+               del self.hash_map[lru_cache.key]
+        
+            # create new node with key value pairs 
+            new_node = self.Node(key, value)
+            self.insert(new_node)
+            self.hash_map[key] = new_node
+            
+            
+            
+            
+cache = DLL_LRU(2)
+cache.put(1, 10)      # [1:10]
+cache.put(2, 20)      # [2:20, 1:10]
+print(cache.get(1))   # 10 → moves 1 to front: [1:10, 2:20]
+cache.put(3, 30)      # evicts 2 → [3:30, 1:10]
+print(cache.get(2))   # -1 (evicted)
+print(cache.get(1))   # 10

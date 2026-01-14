@@ -161,4 +161,9 @@ TRACKING MY PROGRESS - - -
     
 
 
-10. 
+    - - - LRU is just another hell i hope i dont get asked in the interview. concept is cleared yet hard to implement
+     - - -  and LFU is 10x more worse   
+
+
+
+10. sliding window problems 
