@@ -164,6 +164,10 @@ def stock_planner(arr):
 
 
 
+
+
+
+
 #  LRU cache
 # method:  
 # 1. hashMap to find address 
@@ -252,3 +256,6 @@ print(cache.get(1))   # 10 → moves 1 to front: [1:10, 2:20]
 cache.put(3, 30)      # evicts 2 → [3:30, 1:10]
 print(cache.get(2))   # -1 (evicted)
 print(cache.get(1))   # 10
+
+
+# LFU IS STILL LEFT HOPE I CAN WATCH IT BEFORE THE INTERVEW
