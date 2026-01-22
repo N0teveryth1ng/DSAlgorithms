@@ -4,7 +4,7 @@
 
 
 # longest non-repeating substring - - - O(n) --- [lc - 3]
-# variable based sliding window (always uses while )
+# variable based sliding window (always uses while loop)
 def non_repeat(s):
     
     n = len(s)
@@ -66,7 +66,36 @@ def max_consec_III(arr, k):
         
         
         
-# fruit into baskets
-def fruit_baskets():
+# fruit into baskets - - [LC - 904]
+def fruit_baskets(arr):
+    
+    n = len(arr)
+    left = 0
+    max_len = 0
+    basket = {}  # in hashmap 
     
     
+    for right in range(n):
+        
+        # add fruits
+        if arr[right] in basket:
+            basket[arr[right]] += 1
+        else:
+            basket[arr[right]] = 1
+            
+        # if limit exceeds 
+        while len(basket) > 2:
+            basket[arr[right]] -= 1
+            if basket[arr[left]] == 0:
+               del basket[arr[left]]
+            left += 1
+            
+        max_len = max(max_len, right-left+1) 
+    
+    return max_len
+            
+            
+# print(fruit_baskets([1,2,1]))
+
+
+
