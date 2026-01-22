@@ -99,3 +99,47 @@ def fruit_baskets(arr):
 
 
 
+# lc - 424
+def longest_repeat_char_replace(s, k):
+    
+    n = len(s)
+    left = 0
+    max_len = 0
+    store = {} 
+    
+    for right in range(n):
+        if s[right] in store:
+           store[s[right]] += 1
+        else:
+            store[s[right]] = 1
+            
+        window_len = right-left+1
+        max_freq = max(store.values())
+        
+        if window_len - max_freq > k:
+            store[s[left]] -= 1
+            left += 1
+            
+        max_len = max(max_len, window_len)
+    return max_len
+
+
+# print(longest_repeat_char_replace("ABAB", 2))
+
+
+
+def test(arr):
+    
+    n = len(arr)
+    left = 0
+    res = 0
+    mapps = {}
+    
+    for right in range(n):
+        if arr[right] in mapps:
+            mapps[arr[right]] += 1
+        else:
+            mapps[arr[right]] = 1
+            
+        
+    
