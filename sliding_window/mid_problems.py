@@ -123,23 +123,98 @@ def longest_repeat_char_replace(s, k):
         max_len = max(max_len, window_len)
     return max_len
 
-
 # print(longest_repeat_char_replace("ABAB", 2))
 
 
 
-def test(arr):
+
+# Lc - 930  [not a slding window problem]
+def binary_subarray_sum(arr, k):
     
-    n = len(arr)
-    left = 0
-    res = 0
-    mapps = {}
+    mapps = {0:1}
+    current_sum = 0
+    cnt = 0
     
-    for right in range(n):
-        if arr[right] in mapps:
-            mapps[arr[right]] += 1
-        else:
-            mapps[arr[right]] = 1
-            
+    for i in arr:
+        current_sum += i
         
+        if (current_sum - k) in mapps:
+            cnt += mapps[current_sum - k]
+        
+        if current_sum in mapps:
+            mapps[current_sum] += 1
+        else:
+            mapps[current_sum] = 1
+            
+    return cnt
     
+# print(binary_subarray_sum([1,0,1,0,1], 2))
+
+
+
+# lc - 1248 [not a sliding window prblem]
+def coun_nums_subarrs(arr, k):
+    
+    convert = []
+    
+    for i in arr:
+        if i % 2 == 1:
+            convert.append(1)
+        else:
+            convert.append(0)
+            
+            
+            
+    maps = {0:1}
+    curr_sum = 0
+    cnt = 0
+    
+    for x in convert:
+        curr_sum += x
+        
+        if (curr_sum - k) in maps:
+            cnt += maps[curr_sum - k]
+            
+        if curr_sum in maps:
+            maps[curr_sum] += 1
+        else:
+            maps[curr_sum] = 1
+            
+    return cnt 
+
+# print(coun_nums_subarrs([1,1,2,1,1], 3))
+
+
+
+# lc - 525
+def contiguos_arr(arr):
+    
+    convert = []
+    
+    for i in arr:
+        if i == 0:
+            convert.append(-1)
+        else:
+            convert.append(+1)
+            
+    maxlen = 0
+    maps = {0: -1}
+    curr = 0
+    n = len(convert)
+            
+    for x in range(n):  
+        curr += convert[x]
+          
+        if curr in maps:
+            length = x - maps[curr]
+            maxlen = max(maxlen, length)
+        else:
+            maps[curr] = x
+           
+    return maxlen
+
+# print(contiguos_arr([0,1]))
+             
+             
+             
+
