@@ -85,7 +85,7 @@ def fruit_baskets(arr):
             
         # if limit exceeds 
         while len(basket) > 2:
-            basket[arr[right]] -= 1
+            basket[arr[left]] -= 1
             if basket[arr[left]] == 0:
                del basket[arr[left]]
             left += 1
@@ -96,6 +96,7 @@ def fruit_baskets(arr):
             
             
 # print(fruit_baskets([1,2,1]))
+
 
 
 
@@ -217,4 +218,85 @@ def contiguos_arr(arr):
              
              
              
+
+# lc - 209
+def min_size_subarr(arr, k):
+    
+    n = len(arr)
+    left = 0
+    min_len = float('inf')
+    current_sum = 0
+    
+    for right in range(n):     
+        current_sum += arr[right]
+        
+        while current_sum >= k:
+            min_len = min(min_len, right-left+1)
+            current_sum -= arr[left]
+            left += 1
+            
+    return 0 if min_len == float('inf') else min_len
+            
+# print(min_size_subarr([2,3,1,2,4,3], 7))
+    
+    
+         
+         
+         
+# lc - 713 [ subarr product < k]
+def subarr_prod_k(arr, k):
+            
+    left = 0
+    res = 0 
+    prod = 1
+    n = len(arr)
+    
+    for right in range(n):
+        prod *= arr[right]
+        
+        while prod >= k:
+            prod /= arr[left]
+            left += 1
+            
+        res += (right-left+1)
+    return res 
+
+# print(subarr_prod_k([10,5,2,6], 100))
+
+
+
+# lc - 2962 [Count Subarrays Where Max Element Appears at Least K Times]
+def cnt_subarr(arr, k):
+    
+    left = 0
+    maxlen = 0
+    cnt = 0
+    maps = {}
+    
+    n = len(arr)
+    
+    for right in range(n):
+        if arr[right] in maps:
+            maps[arr[right]] += 1
+        else:
+            maps[arr[right]] = 1
+            
+            
+        maxlen = max(maxlen, maps[arr[right]])    
+            
+        # expand window
+        while maxlen >= k:
+            cnt += n - right
+            maps[arr[left]] -= 1
+            
+            if maps[arr[right]] + 1 == maxlen:
+                maxlen = max(maps.values())
+            
+            left += 1    
+            
+    return cnt 
+        
+# print(cnt_subarr([1,3,2,3,3], 2))
+
+
 
