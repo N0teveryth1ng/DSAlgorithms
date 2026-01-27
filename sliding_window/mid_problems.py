@@ -300,3 +300,27 @@ def cnt_subarr(arr, k):
 
 
 
+# lc - 1423
+def maxscore(arr, k):
+    
+    n = len(arr)
+    total_sum = sum(arr)
+    
+    if k == n:
+        return total_sum
+     
+    window_size = n - k
+    curr_sum = sum(arr[:window_size])
+    min_sum = curr_sum
+    
+    # move window 
+    for i in range(window_size, n):
+        curr_sum = curr_sum - arr[i - window_size] + arr[i]
+        min_sum = min(min_sum, curr_sum)
+        
+    return total_sum -  min_sum
+        
+# print(maxscore([1,2,3,4,5,6,1], 3))
+    
+    
+    
