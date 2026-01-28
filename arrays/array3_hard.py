@@ -108,7 +108,7 @@ def three_sum(nums):
 # print(three_sum([-1,0,1,2,-1,-4]))
 
 
-
+# 3 sum best approach 
 def optimal_3sum():
     
     arr = [-1,0,1,2,-1,-4]
@@ -117,23 +117,30 @@ def optimal_3sum():
     
     n = len(arr)
     
-    for i in range(n):
+    for i in range(n-2):
         if i > 0 and arr[i] == arr[i-1]:
             continue
         
         left, right = i+1 , n-1
         while left < right:
-            threeSum = i + arr[left] + arr[right]
+            threeSum = arr[i] + arr[left] + arr[right]
             
             if threeSum > 0:
                 right -= 1
             elif threeSum < 0:
                 left += 1
             else:
-                res.append([i, arr[left], arr[right]])
+                res.append([arr[i], arr[left], arr[right]])
                 left += 1
+                right -= 1
+                
+                
+                # avoid duplication
                 while arr[left] == arr[left - 1] and left < right:
                     left += 1
+                
+                while arr[right] == arr[right + 1] and left < right:
+                    right -= 1
                     
     return res
 
@@ -169,7 +176,7 @@ def threeSum(nums): #  - - - another better way of understanding optimal approac
 
     return res
 
-# print(threeSum())
+# print(threeSum([-1,0,1,2,-1,-4]))
 
 
 
@@ -218,8 +225,9 @@ def better_4():
                     
     return res
 
-
 # print(better_4())
+
+
              
              
 # optimal approach of 4 sum 
@@ -660,11 +668,4 @@ def optimized():
 
 
 # print(optimized())
-
-
-
-
-
-
-
 

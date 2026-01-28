@@ -67,7 +67,7 @@ def max_consec_III(arr, k):
         
         
 # fruit into baskets - - [LC - 904]
-def fruit_baskets(arr):
+def fruit_baskets(arr, k):
     
     n = len(arr)
     left = 0
@@ -84,7 +84,7 @@ def fruit_baskets(arr):
             basket[arr[right]] = 1
             
         # if limit exceeds 
-        while len(basket) > 2:
+        while len(basket) > k:
             basket[arr[left]] -= 1
             if basket[arr[left]] == 0:
                del basket[arr[left]]
@@ -95,7 +95,7 @@ def fruit_baskets(arr):
     return max_len
             
             
-# print(fruit_baskets([1,2,1]))
+# print(fruit_baskets([1,2,1], 2))
 
 
 
@@ -219,7 +219,7 @@ def contiguos_arr(arr):
              
              
 
-# lc - 209
+# lc - 209 - - 
 def min_size_subarr(arr, k):
     
     n = len(arr)
@@ -300,7 +300,7 @@ def cnt_subarr(arr, k):
 
 
 
-# lc - 1423
+# Maximum Points You Can Obtain from Cards [lc - 1423]
 def maxscore(arr, k):
     
     n = len(arr)
@@ -324,3 +324,89 @@ def maxscore(arr, k):
     
     
     
+
+#  longest substring with atmost k distinct chars - [LC - 340]
+# same as LC - 904 just for strings
+def lc_340(s, k):
+    
+    n = len(s)
+    
+    left = 0
+    maxlen = 0
+    mapps = {}
+    
+    for right in range(n):
+        
+        # if exists in mapps
+        if s[right] in mapps:
+            mapps[s[right]] += 1
+        else:
+            mapps[s[right]] = 1
+            
+        # shrink window when size > k  
+        while len(mapps) > k:
+            mapps[s[left]] -= 1
+            if mapps[s[left]] == 0:
+                del mapps[s[left]]
+            left += 1
+                        
+        maxlen = max(maxlen, right-left+1)
+        
+    return maxlen
+
+# print(lc_340("eceba", 2))
+    
+
+
+
+# LC - 992 [subarrs with k different values ]
+class sol:
+    def lc_992(self, arr, k):
+        left = 0
+        cnt = 0
+        mapps = {}
+        n = len(arr)
+        
+        # if exists on map or not 
+        for right in range(n):
+            if arr[right] in mapps:
+                mapps[arr[right]] += 1
+            else:
+                mapps[arr[right]] = 1
+                
+            # window check 
+            while len(mapps) > k:
+                mapps[arr[left]] -= 1
+                if mapps[arr[left]] == 0:
+                    del mapps[arr[left]]
+                left += 1
+                
+            cnt += (right-left+1)
+            
+        return cnt
+        
+        
+    def k_distincts(self, arr, k):
+        return self.lc_992(arr, k) - self.lc_992(arr, k-1) 
+
+
+
+# minimim window substr - [LC - 76]
+def lc_76(s, t):
+    
+    n = len(s)
+    left = 0
+    min_len = 0
+    mapps = {}
+    count_sum =  0
+    
+    for right in range(n):
+        count_sum += s[right]
+                
+        # window shrink
+        while count_sum >= t:
+            min_len = min(min_len, right-left+1)
+            count_sum -= s[left]
+            left += 1
+        
+    return min_len
