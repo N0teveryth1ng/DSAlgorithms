@@ -72,3 +72,62 @@ def q2(nums, target):  # - - - 2sum - II
 
 
 
+# DATES - [30/01/2026]
+# q1 - min_heap and max_heap
+# q2 - check if min_heap exists or not
+# q3 - kth largest elem
+
+import heapq
+
+# q3 - Kth largest 
+def q3(arr, k):
+    heap = []
+    
+    for i in arr:
+        heapq.heappush(heap, i)
+        if len(heap) > k:
+           heapq.heappop(heap)
+    return heap[0]
+
+# print(q3([1, 1, 1, 1, 2], 2))
+
+# q1 - min heap
+def q1_minHeap(arr):
+
+    heapq.heapify(arr)
+    return arr
+
+# print(q1_minHeap([1, 3, 9, 1, 2]))
+        
+# q1 - max heap
+def q1_maxHeap(arr):
+    maxlen = [-i for i in arr]
+    heapq.heapify(maxlen)
+    return -maxlen[0]
+    
+# print(q1_maxHeap([1, 1, 9, 1, 2]))
+
+
+# q2 - check if min heap exists or not 
+def q2(arr):
+    
+    n = len(arr)
+    
+    for i in range(n):
+        
+        left = 2 * i + 1
+        right = 2 * i + 2
+        
+        while left < n and arr[left] < arr[i]:
+            return False
+        
+        while right < n and arr[right] < arr[i]:
+            return False
+        
+    return True
+
+# print(q2([9, 1, 1, 1, 2]))
+
+
+
+
