@@ -131,3 +131,28 @@ def q2(arr):
 
 
 
+# 
+def test(arr, k):
+    
+    n = len(arr)
+    maps = {}
+    left = 0
+    maxlen = 0
+    
+    for right in range(n):
+        if arr[right] in maps:
+            maps[arr[right]] += 1
+        else:
+            maps[arr[right]] = 1
+            
+            
+        while len(maps) > k:
+            maps[arr[left]] -= 1
+            if maps[arr[left]] == 0:
+                del maps[arr[left]]
+            left += 1
+        
+        maxlen = max(maxlen, right-left+1)
+            
+    return maxlen
+

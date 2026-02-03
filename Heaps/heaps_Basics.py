@@ -68,7 +68,73 @@ def check_min_heap(arr):
 
 # print(check_min_heap([1, 3, 5, 7, 9]))
         
+
+
+# sort k sorted arrays
+def sort_k_arr(arr):
+    
+    n = len(arr)
+    heap = []
+    res = []
+    
+    for i in range(n):
+        if arr[i]:
+            heapq.heappush(heap, (arr[i][0], i,0))
+            
+    while heap:
+        val, i, pos = heapq.heappop(heap)
+        res.append(val)
         
+        if pos + 1 < len(arr[i]):
+            next_val = arr[i][pos + 1]
+            heapq.heappush(heap, (next_val, i, pos + 1))
+            
+    return res    
+    
+# print(sort_k_arr([[1,4,7], [2,5,8], [3,6,9]]))
+    
+    
+    
+# merge k sorted lists - [lc - 23] 
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val 
+        self.next = next 
+        
+        
+    def merge_K_list(self, lists):
+        if not lists:
+            return None
+        
+        while len(lists) > 1:
+            mergedList = []
+            
+            for i in range(0, len(lists), 2):
+               l1 = lists[i]  
+               l2 = lists[i + 1] if (i+1) < len(lists) else None
+               mergedList.append(self.mergeList(l1, l2))
+            lists = mergedList
+        return lists[0] 
 
 
-# 
+    def mergeList(self, l1, l2):
+        
+        dummy = ListNode()
+        curr = dummy
+        
+        while l1 and l2:
+            if l1.val < l2.val:
+                curr.next = l1
+                l1 = l1.next
+                
+            else:
+                curr.next = l2
+                l2 = l2.next 
+            curr = curr.next    
+        
+        curr.next = l1 if l1 else l2 
+        return dummy.next 
+    
+    
+    
+    
