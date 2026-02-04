@@ -137,8 +137,8 @@ class ListNode:
     
     
     
-# replace each array elems with its correspinsing rank 
-def replace_by_rank(arr):
+# heap sort  
+def heap_sort(arr):
     
     heapq.heapify(arr)
     n = len(arr)
@@ -149,3 +149,37 @@ def replace_by_rank(arr):
         res.append(min[i])
         
     return res
+
+# print(heap_sort([40, 10, 20, 30, 10, 20]))
+
+
+# sort based on their corresponding ranks 
+def ranking_corres(arr):
+    
+    heap = [(val, i) for i, val in enumerate(arr)]
+    heapq.heapify(heap)
+    
+    rank = 1
+    current = 1
+    prev = None
+    res = [0] * len(arr)
+    
+    while heap:
+        val, idx = heapq.heappop(heap)
+        
+        if current != prev:
+            current = rank
+            rank += 1
+            prev = val
+            
+        res[idx] = current
+        
+    return res
+      
+# print(ranking_corres([40, 10, 20, 30, 10, 20]))
+
+
+
+
+
+
