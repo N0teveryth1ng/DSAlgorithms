@@ -137,4 +137,15 @@ class ListNode:
     
     
     
+# replace each array elems with its correspinsing rank 
+def replace_by_rank(arr):
     
+    heapq.heapify(arr)
+    n = len(arr)
+    res = [0] * n
+    
+    for i in range(n):
+        min = heapq.heappop(arr)
+        res.append(min[i])
+        
+    return res
