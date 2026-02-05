@@ -176,10 +176,61 @@ def ranking_corres(arr):
         
     return res
       
-# print(ranking_corres([40, 10, 20, 30, 10, 20]))
+# print(ranking_corres([100,100,100]))
 
 
 
+
+# ranking based on medal system 
+def lc_506(arr):
+    
+    heap = [(val, i) for i, val in enumerate(arr)]
+    heapq.heapify(heap)
+    
+    rank = 1
+    res = [""] * len(arr)
+    
+    while heap:
+        val, idx = heapq.heappop(heap)
+        
+        if rank == 1:
+            res[idx] = "gold medal"
+        elif rank == 2:
+            res[idx] = "silver medal"
+        elif rank == 3:
+            res[idx] = "bronze medal"
+        else:
+            res[idx] = str(rank)
+        
+        rank += 1
+    return sorted(res)
+
+# print(lc_506([5,4,3,2,1]))
+
+
+# rank transform array [lc - 1331]
+def arrayRankTransform(arr):
+        heap = [(val, i) for i, val in enumerate(arr)]
+        heapq.heapify(heap)
+
+        res = [0] * len(arr)
+        rank = 1
+        prev = None
+        current = 1
+
+        while heap:
+            val, idx = heapq.heappop(heap)
+    
+            while current != prev:
+                current = rank
+                rank += 1
+                prev = val
+
+            res[idx] = current
+
+        return res 
+    
+# print(arrayRankTransform([100,100,100]))
 
 
 

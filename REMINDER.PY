@@ -199,3 +199,31 @@ class ListNode:
     
     
     
+    
+# rank corresponding in place without sorting       
+def test(arr):
+    heap = [(val, i) for i, val in enumerate(arr)]
+    res = [0] *len(arr)
+    heapq.heapify(heap)
+    
+    prev = None
+    current = 1
+    rank = 1
+    
+    while heap:
+        val, idx = heapq.heappop(heap)
+        
+        if current != prev:
+            current = rank
+            rank += 1
+            prev = val
+            
+        res[idx] = current
+        
+    return res
+
+# print(test([40, 10, 20, 30, 10, 20]))
+
+
+
+
