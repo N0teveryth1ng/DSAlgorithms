@@ -26,7 +26,7 @@ def kth_smallest(arr, k):
             heapq.heappop(max_heap)
     return -max_heap[0]
 
-print(kth_smallest([1, 1, 1, 1, 2], 3))
+# print(kth_smallest([1, 1, 1, 1, 2], 3))   
 
 
 
@@ -233,4 +233,38 @@ def arrayRankTransform(arr):
 # print(arrayRankTransform([100,100,100]))
 
 
+# lc - 621
+from collections import Counter
+def task_scheduler(tasks, n):
+    
+    freq = Counter(tasks)
+    
+    maxFreq = max(freq.values())
+    maxCount = sum(1 for v in freq.values() if v == maxFreq)
+    
+    forced_time = (maxFreq - 1) * (n + 1) + maxCount
+    
+    return max(len(tasks), forced_time)
 
+
+
+
+# hand of straights - [lc - 846]
+def hands_straight(hand, k):
+    heap = [i for i in range(hand)]
+    heapq.heapify(heap)
+    
+    if len(hand) % k == 0:
+        return True
+    
+    freq = Counter(hand)
+    minfreq = min(freq.values())
+    
+    while heap:
+        if len(hand) % k != 0:
+            return False
+        
+    return True
+
+
+# print(hands_straight([1,2,3,6,2,3,4,7,8]))
