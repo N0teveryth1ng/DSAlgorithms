@@ -227,3 +227,34 @@ def test(arr):
 
 
 
+# date - 6th feb, 2026
+# lc - 506
+def test(arr):
+    
+    heap = [(val, i) for i, val in enumerate(arr)]
+    heapq.heapify(heap)
+    
+    res = [""] * len(arr)
+    rank = 1
+    
+    while heap:
+        val, idx = heapq.heappop(heap)
+        
+        if rank == 1:
+            res[idx] = "gold medal"
+        elif rank == 2:
+            res[idx] = "silver medal"
+        elif rank == 3:
+            res[idx] = "bronze medal"
+        else:
+            res[idx] = str(rank)
+            
+        rank += 1
+        
+    return sorted(res)
+
+# print(test([5,4,3,2,1]))  
+    
+    
+    
+    
