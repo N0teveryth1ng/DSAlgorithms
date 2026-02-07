@@ -251,20 +251,38 @@ def task_scheduler(tasks, n):
 
 # hand of straights - [lc - 846]
 def hands_straight(hand, k):
-    heap = [i for i in range(hand)]
-    heapq.heapify(heap)
     
-    if len(hand) % k == 0:
-        return True
+    # handling edgecases
+    if len(hand) % k != 0:
+        return False
     
-    freq = Counter(hand)
-    minfreq = min(freq.values())
+    # hashmap
+    count = {}
+    for i in hand:
+        if i in count:
+            count[i] += 1
+        else:
+            count[i] = 1
+            
+    minheap = list(count.keys())
+    heapq.heapify(minheap)
     
-    while heap:
-        if len(hand) % k != 0:
-            return False
+    
+    while minheap:
+        start = minheap[0]
         
+        for i in range(start, start + k):
+            if i not in count:
+                return False
+            count[i] -= 1
+            if count[i] == 0:
+                if i != minheap[0]:
+                    return False
+                heapq.heappop(minheap)
+                    
     return True
 
+# print(hands_straight([1,2,3,4,5], 4))
 
-# print(hands_straight([1,2,3,6,2,3,4,7,8]))
+
+
