@@ -137,6 +137,8 @@ class ListNode:
     
     
     
+    
+    
 # heap sort  
 def heap_sort(arr):
     
@@ -286,3 +288,120 @@ def hands_straight(hand, k):
 
 
 
+
+
+
+
+
+
+
+""" HARD PROBLEMS OF HEAPS """
+
+# design twitter/X - [lc - 355] 
+class Twitter:
+    def __init__(self):
+        self.time = 0  
+        self.tweets = {}  
+        self.following = {}
+    
+    def posttweet(self, userID, tweetID):
+        if userID not in self.tweets:
+            self.tweets[userID] = []
+        self.time += 1
+        self.tweets[userID].append((self.time, tweetID))
+        
+    def follow(self, followerID, followeeID):
+        if followerID not in self.following:
+            self.following[followerID] = set()
+        self.following[followerID].add(followeeID)
+        
+        
+    def unfollow(self, followerID, followeeID):
+        if followerID in self.following and followeeID in self.following[followerID]:
+            self.following[followerID].remove(followeeID)
+        
+        
+    def getfeeds(self, userID):
+        people = self.following.get(userID, set()).copy()
+        people.add(userID)
+        
+        all_tweets = []
+        for person in people:
+            if person in self.tweets:
+                all_tweets.extend(self.tweets[person])
+            
+        all_tweets.sort(reverse=True)
+        return [tweetId for (self.time, tweetId) in all_tweets[:10]]    
+        
+        
+     
+# twitter = Twitter()
+# twitter.posttweet(1, 5)      
+# twitter.posttweet(1, 3)      
+# twitter.follow(2, 1)        
+# twitter.follow(1, 2)        
+# twitter.getfeeds(1)
+
+# print("get feeds -", twitter.getfeeds(1))
+
+
+
+
+# minimum costs to connect two sticks 
+def connect_sticks(arr):
+    
+    if len(arr) <= 1:
+        return 0
+    
+    heap = arr[:]
+    heapq.heapify(heap)
+    
+    total = 0
+        
+    while len(heap) > 1:
+        # pop two elems
+        first = heapq.heappop(heap)
+        second = heapq.heappop(heap)
+        
+        # connect them
+        cost = first + second
+        
+        # update total
+        total += cost 
+
+        # push new sticks
+        heapq.heappush(heap, cost)
+        
+    return total 
+
+# print(connect_sticks([2,3,4]))
+
+
+
+# Kth Largest Element in a Stream -- [lc - 703]
+def Kth_largest(arr, k):
+    
+    heap = []
+    for i in arr:
+        heapq.heappush(heap, i)
+        if len(heap) > k:
+            heapq.heappop(heap)
+    return heap[0] if heap else None
+
+# print(kth_largest([3, 2, 1, 5, 6, 4], 2))
+
+
+
+# find median from steam of data    
+def test(arr):
+    
+    heap = []
+    
+    for i in arr:
+        heapq.heappush(heap, i)
+        
+    
+    
+print(test([1,2]))
+    
+    

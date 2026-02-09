@@ -257,3 +257,39 @@ def test(arr):
     
     
     
+def hand_straight(hands, k):
+    
+    if len(hands) % k != 0:
+        return False
+    
+    maps = {}
+    for i in hands:
+        if i in maps:
+            maps[i] += 1
+        else:
+            maps[i] = 1
+    
+    minheap = list(maps.values())        
+    heapq.heapify(minheap)
+    
+    
+    while maps:
+        start = minheap[0]
+        
+        for i in range(start, start + k):
+            if i not in maps:
+                return False
+            maps[i] -= 1
+            if maps[i] == 0:
+                if i != maps[i]:
+                    return False
+                heapq.heappop(minheap)
+    
+    return True
+
+# print(hand_straight([1,2,3,4,5], 4))
+
+
+
+
+
