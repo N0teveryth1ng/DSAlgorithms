@@ -393,15 +393,53 @@ def Kth_largest(arr, k):
 
 
 # find median from steam of data    
-def test(arr):
+class medianFinder:
+    def __init__(self):
+        self.small = []
+        self.large = []
+        
+    def addNum(self, num):
+        # add to appropriate heaps
+        if not self.small or num <= -self.small[0]:
+            heapq.heappush(self.small, -num)
+        else:
+            heapq.heappush(self.large, num)
+            
+            
+        # balance the heaps 
+        if len(self.small) > len(self.large) + 1:
+            val = -heapq.heappop(self.small)
+            heapq.heappush(self.large, val)       
+        else:
+            val =  heapq.heappop(self.large)
+            heapq.heappush(self.small, -val)
+     
+     
+     
+    #  find median fucntion 
+    def findMedian(self) -> float:
+        if len(self.small) > len(self.large):
+            return -self.small[0]
+        return (-self.small[0] + self.large[0]) / 2
+    
+    
+    
+    
+    
+# k - frequent elems - [lc - 347]
+def k_freqs(arr, k):
+    
+    count = Counter(arr)
     
     heap = []
-    
-    for i in arr:
-        heapq.heappush(heap, i)
-        
-    
-    
-print(test([1,2]))
-    
-    
+    for i,val in count.items():
+        heapq.heappush(heap, (val, i))
+        if len(heap) > k:
+            heapq.heappop(heap)
+    return [i for neg_val, i in heap]
+
+# print(k_freqs([1,2,1,2,1,2,3,1,3,2], 2))
+
+
+
+
