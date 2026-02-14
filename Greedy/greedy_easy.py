@@ -106,8 +106,80 @@ def valid_pars(s):
 
 
 
+# jump one - [lc - 55]
+def jump(arr):
+    
+    reach = arr[0]
+    
+    for i in range(1, len(arr)):
+        if i > reach:
+            return False
+        else:
+            reach = max(reach, i + arr[i])
+        
+    return reach >= len(arr) - 1
+        
+# print(jump([2, 3, 1, 1, 4]))    
 
-# assign N meetings 
-def assign_meetings(start, end):
+
+
+# jump game - [lc - 45]
+def jump_game_2(nums):
+    
+    jumps = 0
+    end = 0
+    reach = 0
+    
+    for i in range(len(nums) - 1):
+        reach = max(reach, i + nums[i])
+        
+        if i == end:
+            jumps += 1
+            end = reach
+            
+    return jumps
+
+# print(jump_game_2([2, 3, 1, 1, 4])) 
+
+
+
+# Minimum number of platforms required for a railway
+def train_station(arrival, depart):
+    arrival.sort()
+    depart.sort()
+    
+    i = j = 0
+    platfroms = 0
+    max_platfroms = 0
+    
+    while i < len(arrival) and j < len(depart):
+        
+        if arrival[i] <= depart[j]:
+            platfroms += 1
+            i += 1
+        else:
+            platfroms -= 1
+            j += 1
+        
+        max_platfroms = max(max_platfroms, platfroms)
+        
+    return max_platfroms
+
+
+# print(train_station([900, 940, 950, 1100], [910, 1200, 1120, 1130]))
+
+
+
+
+def job(deadline, profit):
+    
+    profit.sort(reverse=True)
+    
+    max_deadline = max(deadline)
+    
+    i = j = 0
+    
+    while i < len(deadline) and j < len(profit):
+        if deadline[i] == 
     
     
