@@ -106,3 +106,8 @@ def valid_pars(s):
 
 
 
+
+# assign N meetings 
+def assign_meetings(start, end):
+    
+    
