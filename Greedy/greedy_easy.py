@@ -171,15 +171,73 @@ def train_station(arrival, depart):
 
 
 
-def job(deadline, profit):
+# candy problem [lc - 135]
+def candy_problem(rating):
+    candy = [1] * len(rating)
     
-    profit.sort(reverse=True)
+    # left pass
+    for i in range(1, len(rating)):
+        if rating[i] > rating[i-1]:
+            candy[i] = candy[i-1] + 1   
+            
+    # right pass             
+    for j in range(len(rating) - 2, -1, -1):
+        if rating[j] > rating[j+1]:
+            candy[j] = max(candy[j], candy[j+1] + 1)
+            
+    return sum(candy)
+            
+# print(candy_problem([1,2,2]))
+
+
+
+# shortest jobs first
+def sort_jobs(tasks):
     
-    max_deadline = max(deadline)
+    tasks.sort()
     
-    i = j = 0
+    current = 0
+    waiting = []
     
-    while i < len(deadline) and j < len(profit):
-        if deadline[i] == 
+    for i in tasks:
+        waiting.append(current)
+        current += i
+        
+    return waiting
+
+# print(sort_jobs([3, 1, 4, 2]))
+
+
+
+
+# insert interval
+def insert_interval(new, old):
+    
+    res = []
+    
+    for i in range(len(old)):
+        if new[1] < old[i][0]:
+            res.append(new)
+            return res + old[i:]
+        elif new[0] > old[i][1]:
+            res.append(old[i])
+        else:
+            new = [min(new[0], old[i][0]), max(new[1], old[i][1])]
+            
+    res.append(new)
+    return res
+            
+# print(insert_interval([2,5], [[1,3],[6,9]]))
+        
+        
+    
+# non overlapping intervals 
+def no_overlap_intervals(intervals):
+    
+    res = []
+    
+    for i in range(len(intervals)):
+        
+        
     
     
