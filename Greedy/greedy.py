@@ -1,4 +1,4 @@
-# GREEDY PART ONE [EASY]
+# GREEDY ( cotains both easy and medium )
 
 
 # assign cookies [ lc - 455]
