@@ -234,10 +234,22 @@ def insert_interval(new, old):
 # non overlapping intervals 
 def no_overlap_intervals(intervals):
     
-    res = []
+    if not intervals:
+        return 0
     
-    for i in range(len(intervals)):
+    intervals.sort(key=lambda x: x[1])
+    last_end = intervals[0][1]
+    cnt = 1
+    
+    for i in range(1, len(intervals)):
+        if intervals[i][0] >= last_end:
+            cnt += 1
+            last_end = intervals[i][1]
         
-        
-    
-    
+    return len(intervals) - cnt
+
+# print(no_overlap_intervals([[1,2],[2,3],[3,4],[1,3]]))    
+
+
+
+
