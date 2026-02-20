@@ -1,5 +1,4 @@
-# Taversals 
-
+# Taversals   
 class TreeNode:
     def __init__(self, val, left=None, right=None):
         self.val = val
@@ -9,7 +8,8 @@ class TreeNode:
     def __str__(self):
         return str(self.val)
 
-# 
+
+# tree nodes
 A = TreeNode(1)
 B =  TreeNode(2)
 C = TreeNode(3)
@@ -132,15 +132,43 @@ def max_depth_BT(node):
 
 
 
-# check for balanced binary tree
+# check for balanced binary tree - [lc 110]
 def balanced_binary(node):
     
     if not node:
-        return False
+        return [True, 0]
     
-    while node.left < node.right:
-        left = balanced_binary(node.left)
-        right = balanced_binary(node.right) 
-        abs(height(left) - height(right)) <= 1 
+    left, right = balanced_binary(node.left), balanced_binary(node.right)
+    balanced = (left[0] and right[0] and 
+                abs(left[1] - right[1]) <= 1)    
+    
+    return [balanced, 1 + max(left[1], right[1])]
+
+# print(balanced_binary(C))
+
+
+
+
+# diameter binary tree 
+def diameter(node):
+    
+    diaMet = 0
+    
+    def height(n):
+        nonlocal diaMet
+        if not n:
+            return 0
         
-        
+        left_height = height(n.left)
+        right_height = height(n.right)
+        diaMet = max(diaMet, left_height + right_height)    
+        return 1 + max(left_height, right_height)
+    
+    height(node)
+    return diaMet
+
+# print(diameter(A))
+
+
+
+
