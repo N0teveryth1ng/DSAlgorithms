@@ -171,4 +171,12 @@ def diameter(node):
 
 
 
-
+# binary tree maximum path sum [lc - 124]
+def max_sum(node):
+    
+    if not node:
+        return 0
+    
+    
+    
+    
