@@ -173,10 +173,47 @@ def diameter(node):
 
 # binary tree maximum path sum [lc - 124]
 def max_sum(node):
+    max_path = float('-inf')
     
-    if not node:
-        return 0
+    def dfs(n):
+        nonlocal max_path
+        if not n:
+            return 0
+        
+        left = max(dfs(n.left), 0)
+        right = max(dfs(n.right), 0)
+        
+        # Path through this node
+        max_path = max(max_path, n.val + left + right)
+        
+        # Return best one-sided path
+        return n.val + max(left, right)
+    
+    dfs(node)
+    return max_path
+
+# print(max_sum([-10,9,20,0,0,15,7]))
     
     
     
+    
+    
+# same tree - [lc - 100] 
+def same_tree(p, q):
+    
+    if not p and not q:
+        return True
+    
+    if not p or not q:
+        return False
+    
+    if p.val != q.val:
+        return False
+    
+    return same_tree(p.left, q.left) and same_tree(p.right, p.right)
+
+
+
+
+
     
