@@ -87,6 +87,7 @@ def level_order(node):
             
 # print(level_order(A))
         
+        
 
 # level order based on (leetcode format)
 def test(root):
@@ -215,5 +216,71 @@ def same_tree(p, q):
 
 
 
+# zig zag or spiral traversal
+def lc_103(node):
+    
+    if not node:
+        return []
+    
+    
+    q = deque([node])
+    res = []
+    left_right = True
+    
+    while q:
+        current = []
+        
+        for _ in range(len(q)):
+            node = q.popleft()
+            current.append(node.val)
+            
+            if node.left:
+                q.append(node.left)
+                
+            if node.right:
+                q.append(node.right)
+                
+        if not left_right:
+            current.reverse()
+            
+        res.append(current)
+        left_to_right = not left_to_right
+        
+    return res
 
+
+
+# lc - 987
+def vertical(node):
+    
+    if not node:
+        return []
+    
+    level = []
+    q = deque([(node, 0, 0)])
+    
+    min_col = float("inf") 
+    max_col = float("-inf")
+    
+    while q:
+        row, col, node = q.popleft()
+        
+        if col < min_col:
+            min_col = col
+            
+        if col > max_col:
+            max_col = col
+            
+        level[col].append((node.val, row))
+        
+        if node.left:
+            q.append((node.left, row + 1, col - 1))
+            
+        if node.right:
+            q.append((node.right, row + 1, col + 1)) 
+            
+    
+    res = []
+    for i in range(min_col, max_col + 1):
+        items = 
     
