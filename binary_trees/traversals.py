@@ -250,20 +250,21 @@ def lc_103(node):
 
 
 
+from collections import defaultdict
 # lc - 987
 def vertical(node):
     
     if not node:
         return []
     
-    level = []
+    level = defaultdict(list)
     q = deque([(node, 0, 0)])
     
     min_col = float("inf") 
     max_col = float("-inf")
     
     while q:
-        row, col, node = q.popleft()
+        node, row, col = q.popleft()
         
         if col < min_col:
             min_col = col
@@ -280,7 +281,127 @@ def vertical(node):
             q.append((node.right, row + 1, col + 1)) 
             
     
+    # sorting it in order by order
     res = []
     for i in range(min_col, max_col + 1):
-        items = 
+        items = level[i]
+        items.sort(key=lambda x: (x[1], x[0]))
+        items = [val for val, _ in items]
+        
+        res.append(items)
+        return res
+    
+    
+    
+    
+    
+# top view traversal - binary tree
+def top_view(node):
+    
+    if not node:
+        return []
+    
+    q = deque([(node, 0)])
+    res = {}
+    
+    min_col = 0
+    max_col = 0
+    
+    while q:
+        node, col = q.popleft()
+        
+        min_col = min(min_col, col)
+        max_col = max(max_col, col)
+            
+        if col not in res:
+            res[col] = node.val
+        
+        if node.left:
+            q.append((node.left, col - 1))
+            
+        if node.right:
+            q.append((node.right, col + 1))
+            
+         
+    return [res[col] for col in range(min_col, max_col + 1)]
+
+
+
+
+
+# bottom view traversal - binary tree
+def bottom_view(node):
+    
+    if not node:
+        return []
+    
+    max_col = min_col = 0
+    
+    q = deque([(node, 0)])
+    res = {}
+    
+    while q:
+        node, col = q.popleft()
+    
+        min_col = min(min_col, col)    
+        max_col = max(max_col, col)
+        
+        res[col] = node.val
+            
+        if node.left:
+            q.append((node.left, col - 1))
+            
+        if node.right:
+            q.append((node.right, col + 1))    
+    
+    
+    return [res[col] for col in range(min_col, max_col + 1)]
+
+
+
+
+# right view traversal - binary tree
+def right_view(root):
+    
+    res = []
+    
+    def dfs(node, level):
+        if not node:
+            return []
+        
+        if level == len(res):
+            res.append(node.val)
+            
+        dfs(node.right, level + 1)
+        dfs(node.left, level + 1)
+        
+    dfs(root, 0)
+    return res
+    
+
+
+
+# left view traversal - binary trees 
+def left_view(root):
+    
+    res = []
+
+    def dfs(node, level):
+        
+        if not node:
+            return 
+        
+        if level == len(res):
+            res.append(node.val)
+            
+        dfs(node.left, level + 1)
+        dfs(node.right, level + 1)
+        
+    dfs(root, 0)
+    return res
+
+
+
+
+    
     
