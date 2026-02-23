@@ -403,8 +403,14 @@ def left_view(root):
 
 
 
+
+
 # boundary traversal - binary trees
 def boundary(root):
+    
+    if not root:
+        return []
+        
     res = [root.val]
     
     # traverse left boundary
@@ -419,9 +425,9 @@ def boundary(root):
             
     # traverse leaves
     def leaves(node):
-        if not node or (not node.left and node.right):
+        if not node or (not node.left and not node.right):
             return
-        
+        res.append(node.val)
         leaves(node.right)
         leaves(node.left)
         
@@ -430,11 +436,14 @@ def boundary(root):
     def right_bondary(node):
         if not node or (not node.left and not node.right):
             return
+        
         if node.right:
             right_bondary(node.right)
         else:
             right_bondary(node.left)
         res.append(node.val)
+            
+            
             
     if root.left:
        left_bound(root.left)
@@ -452,4 +461,68 @@ def boundary(root):
         
     
     
+    
+
+    
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+""" HERE WE WILL SOLVE THE HARD PARTS OF BINARY TREES """
+
+# print root to leaf path in binary tree
+def root_leaf(node):
+    
+    if not node:
+        return
+    
+    path = res = []
+    
+    path.append(node.val)
+    
+    if not node.left and not node.right:
+        res.append(path.copy())
+    else:
+        root_leaf(node.left, path, res)
+        root_leaf(node.right, path, res)
+    
+    path.pop()
+    
+    
+    
+    
+# lc - 236
+def LCA(node, p,q):
+    
+    if not node or node == p or node == q:
+        return node
+    
+    left = LCA(node.left, p, q)
+    right = LCA(node.right, p, q)
+    
+    if left and right:
+        return node
+   
+    return left and right
+
+
+ 
