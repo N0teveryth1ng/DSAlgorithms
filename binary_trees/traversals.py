@@ -403,5 +403,53 @@ def left_view(root):
 
 
 
+# boundary traversal - binary trees
+def boundary(root):
+    res = [root.val]
+    
+    # traverse left boundary
+    def left_bound(node):
+        if not node or (not node.left and not node.right):
+            return
+        res.append(node.val)
+        if node.left:
+            left_bound(node.left)
+        else:
+            left_bound(node.right)
+            
+    # traverse leaves
+    def leaves(node):
+        if not node or (not node.left and node.right):
+            return
+        
+        leaves(node.right)
+        leaves(node.left)
+        
+        
+    # traverse right boundary 
+    def right_bondary(node):
+        if not node or (not node.left and not node.right):
+            return
+        if node.right:
+            right_bondary(node.right)
+        else:
+            right_bondary(node.left)
+        res.append(node.val)
+            
+    if root.left:
+       left_bound(root.left)
+
+    leaves(root.left)
+    leaves(root.right)
+    
+    if root.right:
+        right_bondary(root.right)
+        
+        
+    return res
+
+
+        
     
     
+        
