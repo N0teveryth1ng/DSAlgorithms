@@ -526,3 +526,140 @@ def LCA(node, p,q):
 
 
  
+ 
+# lc - 662
+def max_width(node):
+    
+    if not node:
+        return []
+    
+    res = 0
+    q = deque([[node, 1, 0]])  # node, num, level 
+    prevLvl, prevNum = 0 , 1
+    
+    while q:
+        node, num, level = q.popleft()
+        
+        if level > prevLvl:
+            prevLvl = level
+            prevNum = num
+        
+        res = max(res, num - prevNum + 1)
+        if node.left:
+            q.append(node.left, 2 * num, level + 1)
+        
+        if node.right:
+            q.append(node.right, 2 * num, level + 1)
+    
+    return res
+
+
+            
+    
+# children sum property in binary tree
+def children_sum(node):
+    
+    if not node:
+        return True
+    
+    if not node.left and not node.right:
+        return True
+    
+    left = node.left.val if node.left else 0
+    right = node.right.val if node.right else 0 
+    
+    if node.val != left + right:
+        return False
+    
+    return children_sum(node.left) and children_sum(node.right)
+
+
+
+
+
+# all nodes distance k in binary tree
+def all_nodes_k(node, target, k):
+    
+    parent = {}
+    
+    # DFS 
+    def dfs(node, par):
+        
+        if not node:
+            return
+        
+        parent[node] = par
+        dfs(node.left, node)
+        dfs(node.right, node)
+        
+    dfs(node, None)
+    
+    
+    # BFS method
+    q = deque([target])
+    visited = set([target])
+    distance = 0
+    
+    while q:
+        if distance == k:
+            return [node.val for node in q]
+        
+        for _ in range(len(q)):
+            node = q.popleft()
+            
+            for padosi in (node.left, node.right, parent[node]):
+                    if padosi not in visited:
+                        visited.add(padosi)
+                        q.append(padosi)
+                         
+        distance += 1
+           
+    return []
+                        
+    
+    
+
+
+
+# minimum time taken to burn the BT from a given node 
+def burn_BT(node, k):
+    
+    
+    
+    # DFS  ---- traverse parent node
+    parent = {}
+    
+    def dfs(node, par):
+        if not node:
+            return
+        
+        parent[node] = par
+        dfs(node.left, node)
+        dfs(node.right, node)
+        
+    dfs(node, None)
+    
+    
+    
+    # BFS  --- level by level 
+    q = deque([k])
+    visited = set([k])
+    time = 0
+    
+    
+    while q:
+        
+        for _ in range(len(q)):
+            node = q.popleft()
+    
+            for fire in (node.left, node.right, parent[node]):
+                if fire and fire in visited:
+                    visited.add(fire)
+                    q.append(fire)
+        
+        time += 1
+        
+    return time - 1
+
+
+
