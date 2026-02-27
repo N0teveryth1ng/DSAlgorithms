@@ -663,3 +663,109 @@ def burn_BT(node, k):
 
 
 
+
+# total nodes [lc - 105]
+# preoder and inorder
+def preorder_inorder(preorder, inorder):
+    
+    if not preorder or not inorder:
+        return 
+    
+    root = TreeNode(preorder[0])
+    mid = inorder.index(preorder[0])
+    
+    root.left = preorder_inorder(preorder[1:mid + 1], inorder[:mid])
+    root.left = preorder_inorder(preorder[mid + 1:], inorder[mid + 1:])
+    return root
+
+
+
+
+
+    
+# postorder and inorder 
+def postorder_inorder(postorder, inorder):
+    
+        if not postorder or not inorder:
+            return None
+        
+        root = TreeNode(postorder[-1])
+        mid = inorder.index(postorder[-1])
+        
+        root.left = postorder_inorder(postorder[:mid], inorder[:mid])
+        root.right = postorder_inorder(postorder[mid:-1], inorder[mid + 1:])
+        return root
+    
+    
+    
+
+
+
+#  serialize and de serealize [lc - 297] 
+class Test:
+    def serialize(root):
+        
+        res = []
+        
+        def dfs(node):
+            
+            if not node:
+                res.append("null")
+                return 
+            
+            res.append(str(node.val))
+            dfs(node.left)
+            dfs(node.right)
+        
+        dfs(root)
+        return ",".join(res)
+            
+            
+            
+    def deserealize(data):
+            
+            values = data.split(",")
+            index = 0
+            
+            def dfs():
+                nonlocal index
+                if values[index] == "null":
+                    index += 1
+                    return None
+                
+                root = TreeNode(int(values[index]))
+                index += 1
+                root.left = dfs()
+                root.right = dfs()
+    
+                return root
+                
+            return dfs()
+        
+        
+    
+    
+# flatten a tree to LL  -- [lc - 114]
+def flatten(root):
+    prev = None
+    
+    def dfs(node):
+        if not node:
+            return
+        
+        flatten(node.right)
+        flatten(node.left)
+        
+        root.right = prev
+        root.left = None
+        prev = node
+        
+    dfs(root)
+    
+    
+    
+    
+    
+    
+    
+    

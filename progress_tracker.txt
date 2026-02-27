@@ -178,11 +178,6 @@ TRACKING MY PROGRESS - - -
 
 
 
-
-
-
-
-
 - - - - - - PROJECTS  - - - - -
 
 - palm payment using cam  
