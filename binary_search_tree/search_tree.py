@@ -134,16 +134,63 @@ class TreeNode:
     
     
    
-   # Kth largest/smallest element in BST - [lc - 230]
-    def Kth_largest(self, node, k):
+    # Kth largest/smallest element in BST - [lc - 230]
+    def Kth_smallest(self, root, k):
        
-        if not node:
-           return
-       
-        if k < node.val:
-            self.Kth_largest(node.left, k)
-        elif k > node.val:
-            self.Kth_largest(node.right, k)
+        def inorder(node): 
+            if not node:
+                return []
+            return inorder(node.left) + [node.val] + inorder(node.right)
+        
+        sorted_val = inorder(root)
+        sorted_val[k-1]
             
-             
+            
+            
+        
+    # LCA in BST
+    def LCA_bst(self, node, p, q):
+        
+        if not node:
+            return None
+        
+        if p.val < node.val and q.val < node.val:
+            return self.LCA_bst(node.left, p, q)
+        
+        if p.val < node.val and q.val > node.val:
+            return self.LCA_bst(node.right, p, q)
+        
+        return node
+        
+        
+  
+  
+    # Construct BST from Preorder --- [lc - 1008]
+    def construct(self, preorder):
+        index = 0
+        
+        def dfs(lower, upper):
+            nonlocal index
+            if index >= len(preorder):
+                return None
+            
+            val = preorder[index]
+            if val > lower or val < upper:
+                return None 
+            
+            root = TreeNode(val)
+            index += 1
+            root.left = dfs(lower, val)
+            root.right = dfs(val, upper)
+            
+            return root
+        
+        return dfs(float('-inf'), float('inf'))
+    
+    
+    
+    
+    # BST iterator
+    def iterator():
+        
         
