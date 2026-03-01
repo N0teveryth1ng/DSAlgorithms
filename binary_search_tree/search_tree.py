@@ -190,7 +190,53 @@ class TreeNode:
     
     
     
-    # BST iterator
-    def iterator():
+    # two sum 4 - [lc - 653]
+    def two_sum(self, root, k):
+        seen = set()
+        
+        def dfs(node):
+            if not node:
+                return
+            
+            complement = k - node.val    
+            if complement in seen:
+                return True
+            
+            seen.add(node.val)
+            return dfs(node.left) or dfs(node.right)
+            
+            
+        return dfs(root)
+        
+        
+        
+        
+    # recover BST [lc - 99]
+    def recover_BST(root):
+        
+        prev = None
+        first = None
+        second = None
+        
+        def inorder(node):
+            
+            if not node:
+                return
+            
+            inorder(node.left)
+            
+            if prev and prev.val > node.val:
+                if not first:
+                    first = prev
+                second = node
+                
+            prev = node
+            
+            inorder(node.right)
+        
+        
+    # max sum BST - [lc - 1373]
+    def mazsunBST(root):
+        
         
         
