@@ -235,8 +235,3 @@ class TreeNode:
             inorder(node.right)
         
         
-    # max sum BST - [lc - 1373]
-    def mazsunBST(root):
-        
-        
-        

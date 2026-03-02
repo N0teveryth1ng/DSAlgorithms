@@ -178,7 +178,25 @@ TRACKING MY PROGRESS - - -
 
 
 
+
+ - - - - GRAPHS - - - -
+- DFS, BFS (any)
+- Number of Islands
+- Course Schedule (cycle in directed)
+- Course Schedule II
+- Dijkstra (basic implementation)
+- Rotting Oranges
+- Number of Connected Components
+- Is Graph Bipartite?
+- Max Area of Island
+- Clone Graph
+
+
+
+
+
+
 - - - - - - PROJECTS  - - - - -
 
 - palm payment using cam  
-- 
+- charge checker from another phone
