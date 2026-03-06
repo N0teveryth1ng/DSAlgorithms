@@ -235,3 +235,81 @@ def rotting_oranges(grid):
         minutes += 1
         
     return minutes if fresh == 0 else -1
+
+
+
+
+
+
+# break the chain reaction - [lc - 207]
+def canFinish(course, preq):
+    
+    # doing graph
+    graph = [[] for _ in range(course)]
+    for crs, pre in preq:
+        graph[crs].append(pre)
+        
+        
+    # 0 = unvisited, 1 = visiting, 2 = visited
+    state = [0] * course
+    
+    # traverse the nodes
+    def dfs(crs):
+        if state[crs] == 1:
+            return False
+        if state[crs] == 2:
+            return True
+        
+        state[crs] = 1
+        for pre in graph[crs]:
+            if not dfs(pre):
+                return False
+        state[crs] = 2
+        return True
+    
+    
+    for crs in range(course):
+        if not dfs(crs):
+            return False
+    return True
+    
+    
+# print(canFinish(2, [[1,0]]))
+    
+    
+    
+
+# 01 matrix [lc - 542]
+def matrix(mat):
+    
+    rows, cols = len(mat), len(mat[0])
+    q = deque()
+    store = set()
+    
+    for r in range(rows):
+        for c in range(cols):
+            if mat[r][c] == 0:
+                store.add(r, c)
+                q.append((r, c))
+     
+     
+    directions = [(1,0), (-1,0), (0,1), (0,-1)]
+    
+    while q:
+        r, c = q.popleft()
+        for dr, dc in directions:
+            nr, nc = r + dr, c + dc
+            if 0 <= nr < rows and 0 <= nc < cols and (nr, nc) not in store:
+                   store[nr][nc] = store[r][c] + 1
+                   store.add(nr, nc)
+                   q.append((nr, nc))
+                   
+    return mat
+                    
+                    
+                    
+  
+  
+                    
+# 
+                

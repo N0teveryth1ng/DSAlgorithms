@@ -202,3 +202,25 @@ TRACKING MY PROGRESS - - -
 - charge checker from another phone
 - 
 
+
+
+
+
+
+
+PROJECT COVERS :- 
+
+Distributed system	   |    Sharding, consistency, replication
+Real-time app	       |    WebSockets, pub/sub, concurrency
+Processing pipeline	   |    Queues, async, workers, Kafka/RabbitMQ
+
+
+They need to scream:
+- Rate limiter
+- Consistent hashing
+- Message queues
+- Caching strategies
+- Load balancing
+- Database indexing
+
+
