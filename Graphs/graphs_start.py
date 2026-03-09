@@ -308,8 +308,129 @@ def matrix(mat):
                     
                     
                     
-  
-  
+
+
                     
-# 
+#  indentify sorroundings ---- [lc - 130]
+def sorround(mat):
+    
+    if not mat:
+        return
+    
+    rows, cols = len(mat), len(mat[0])
+    q = deque()
+    
+    # add border 0s to queue
+    for r in range(rows):
+        for c in range(cols):
+            if (r == 0 or r == rows-1 or c == 0 or c == cols-1) and mat[r][c] == 'O':
+                q.append((r, c))
+                mat[r][c] = "#"
                 
+            
+    directions =  [(1,0), (-1,0), (0,1), (0,-1)]
+    
+    while q:
+        r, c = q.popleft()
+        for dr, dc in directions:
+            nr, nc = r + dr, c + dc 
+            if 0 <= nr < rows and 0 <= nc < cols and mat[nr][nc] == 'O':
+                mat[nr][nc] = "#"
+                q.append((nr, nc))
+                
+                
+    for r in range(rows):
+        for c in range(cols):
+            if mat[r][c] == "O":
+                mat[r][c] = 'X'
+            elif mat[r][c] == "#":
+                mat[r][c] = 'O'
+    
+    return mat            
+                
+# print(sorround([["X","X","X","X"],["X","O","O","X"],["X","X","O","X"],["X","O","X","X"]]))
+                
+                
+                
+
+#  number of enclaves ---  [lc - 1020]
+def enclaves(mat):
+    
+    if not mat:
+        return
+    
+    rows, cols = len(mat), len(mat[0])
+    q = deque()
+    
+    for r in range(rows):
+        for c in range(cols):
+            if (r == rows-1 or r == 0 or c == 0 or c == cols-1) and mat[r][c] == 1:
+                q.append((r, c))
+                mat[r][c] = "#"   # marking safe
+                
+    directions = [(1,0), (-1,0), (0,1), (0,-1)] 
+                
+    while q:
+        r, c = q.popleft()
+        for dr, dc in directions:
+            nr, nc = r + dr, c + dc
+            if (0 <= nr < rows and 0 <= nc < cols) and mat[nr][nc] == 1:
+                q.append((nr, nc))
+                mat[nr][nc] = "#"             
+                
+    
+    count = 0
+    for r in range(rows):
+        for c in range(cols):
+            if mat[r][c] == 1:
+                count += 1
+                
+                
+    return count
+
+# print(enclaves([[0,0,0,0],[1,0,1,0],[0,1,1,0],[0,0,0,0]]))
+
+
+
+
+# word ladder 1 --  [lc - 127]
+
+
+
+
+#  Is Graph Bipartite? - [lc 785]
+def is_graph(mat):
+    
+    colors = [0] * len(mat)
+    
+    def bfs(node):
+        
+        if colors[node]:
+            return True
+        
+        q = deque([node])
+        colors[node] = 1
+        
+        while q:
+            node = q.popleft()
+            
+            for nei in colors[node]:
+                if colors[nei]:
+                    colors[nei] = -colors[node]
+                    q.append(nei)
+                elif colors[nei] == colors[node]:
+                    return False    
+        return True
+    
+    
+    for node in range(len(colors)):
+        if not bfs(node):
+            return False    
+    return True
+
+
+
+
+
+#  course schedule II -- [lc - 210]
+def course_schedule(course, preq)
