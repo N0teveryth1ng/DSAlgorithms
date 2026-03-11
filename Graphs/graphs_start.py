@@ -433,4 +433,88 @@ def is_graph(mat):
 
 
 #  course schedule II -- [lc - 210]
-def course_schedule(course, preq)
+def course_schedule(course, prereq):
+    
+    preq =  {c:[] for c in range(course)}
+    for crs, pre in prereq:
+        preq[crs].append(pre)
+        
+        
+    output = []
+    visited = set() 
+    cycle = set()
+    
+    def dfs(crs):
+        if crs in cycle:
+            return False
+        
+        if crs in visited:
+            return True
+        
+        cycle.add(crs)
+        for pre in preq[crs]:
+            if not dfs(pre):
+                return False
+            
+        cycle.remove(crs)
+        visited.add(crs)
+        output.append(crs)
+        return True
+    
+    for i in range(course):
+        if not dfs(i):
+            return []
+    return output
+
+
+# print(course_schedule(2, [[1,0]]))
+
+
+
+# eventual safes - [lc - 802]
+def eventual_safe(graph):
+    
+    n = len(graph)
+    
+    output = []
+    visited = set()
+    safe = set()
+    
+    def dfs(node):
+        
+        if node in visited:
+            return False
+        
+        if node in safe:
+            return True 
+        
+        visited.add(node)
+        for nei in graph[node]:
+            if not dfs(nei):
+                return False
+            
+        visited.remove(node)
+        safe.add(node)
+        return True
+    
+    
+    for i in range(n):
+        if dfs(i):
+            output.append(i)
+    return output
+
+
+# print(eventual_safe([[1,2],[2,3],[5],[0],[5],[],[]]))
+        
+        
+        
+
+
+# shortest path in binary maze
+def short_path(mat):
+    
+    rows, cols = len(mat), len(mat[0])
+    
+    for r in range(rows):
+        for c in range(cols):
+            if mat[r][c] == 
