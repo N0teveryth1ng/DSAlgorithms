@@ -510,11 +510,72 @@ def eventual_safe(graph):
         
 
 
-# shortest path in binary maze
+# shortest path in binary maze --- [lc - 1091]
 def short_path(mat):
     
-    rows, cols = len(mat), len(mat[0])
+    n = len(mat)
+    q = deque([(0,0, 1)])
+    visit = set((0, 0))
     
-    for r in range(rows):
-        for c in range(cols):
-            if mat[r][c] == 
+    while q:
+        r, c, length = q.popleft()
+        if min(r, c) < 0 or max(r, c) >= n or mat[r][c]:
+            continue
+        
+        if r == n - 1 and c == n - 1:
+            return length
+        
+        directions = [(1,0), (-1,0), (0,1), (0,-1), (1,1), (1,-1), (-1,1), (-1,-1)]
+        
+        for dr, dc in directions:
+            nr, nc = r + dr, c + dc
+            if (nr, nc) not in visit:
+                q.append((nr, nc, length + 1))
+                visit.add((nr, nc))
+                    
+    return -1
+
+
+# print(short_path([[0,0,0],[1,1,0],[1,1,0]]))
+
+
+
+
+import heapq 
+
+# path with minimum effort [lc - 1631]
+# djikstra
+def path_effort(height):
+    
+    rows, cols = len(height), len(height[0])
+    minHeap = [[0, 0, 0]]
+    visit = set()
+    
+    directions = [(1,0), (-1,0), (0,1), (0,-1)] 
+    
+    while minHeap:
+        diff, r, c = heapq.heappop(minHeap)
+        
+        if (r, c) in visit:
+            continue
+        
+        visit.add((r, c))
+        if ((r, c)) == (rows - 1, cols - 1):
+            return diff
+        
+        for dr, dc in directions:
+            nr, nc = r + dr, c + dc
+            if (nr, nc) in visit or (nr < 0 or nc < 0) or nr == rows or nc == cols:
+                continue
+            
+            newDiff = max(diff, abs(height[r][c] - height[nr][nc]))
+            heapq.heappush(minHeap, [newDiff, nr, nc])
+            
+            
+# print(path_effort([[1,2,3],[3,8,4],[5,3,5]]))
+
+
+
+
+
+
