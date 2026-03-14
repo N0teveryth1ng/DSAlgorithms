@@ -172,7 +172,9 @@ TRACKING MY PROGRESS - - -
 
 12. greedy - 
 
+13. Binary Tree
 
+14. Binary search Tree
 
 
 
@@ -183,13 +185,13 @@ TRACKING MY PROGRESS - - -
 - DFS, BFS (any)
 - Number of Islands  - - ✅
 - Course Schedule (cycle in directed)
-- Course Schedule II
-- Dijkstra (basic implementation)
+- Course Schedule II - - ✅
+- Dijkstra (basic implementation) - - ✅
 - Rotting Oranges - - ✅
-- Number of Connected Components
-- Is Graph Bipartite?
-- Max Area of Island
-- Clone Graph
+- Number of Connected Components  - - ✅
+- Is Graph Bipartite? - - ✅
+- Max Area of Island - - ✅
+- Clone Graph - - 
 
 
 

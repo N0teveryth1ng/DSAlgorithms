@@ -544,7 +544,7 @@ def short_path(mat):
 import heapq 
 
 # path with minimum effort [lc - 1631]
-# djikstra
+# djikstra algo
 def path_effort(height):
     
     rows, cols = len(height), len(height[0])
@@ -574,6 +574,56 @@ def path_effort(height):
             
 # print(path_effort([[1,2,3],[3,8,4],[5,3,5]]))
 
+
+
+
+
+# cheapest flight within k stops --- [lc - 787]
+# bellman ford algo  - - - [handles neg vals but slow compared to djikstra]
+def cheap_flight(n, flights, src, dst, k):
+    
+    prices = [float("inf")] * n
+    prices[src] = 0
+    
+    for _ in range(k + 1):
+        temp = prices.copy()
+        
+        for s,d,p in flights:
+            if prices[s] == float("inf"):
+                continue
+            if prices[s] + p < temp[d]:
+                temp[d] = prices[s] + p
+        prices = temp
+        
+    return -1 if prices[dst] == float("inf") else prices[dst]
+
+
+# print(cheap_flight(4, [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]], 0, 3, 1))
+
+
+
+
+
+# network delay [lc - 743]
+def network_delay(times, n, k):
+    
+    prices = [float("inf")] * (n + 1)
+    prices[k] = 0
+        
+    for i in range(n - 1):
+        temp = prices.copy()
+        
+        for s,d, p in times:
+            if prices[s] == float("inf"):
+                continue
+            if prices[s] + p < temp[d]:
+                temp[d] = prices[s] + p
+        prices = temp
+
+    maxTime = max(prices[1:])
+    return maxTime if maxTime < float("inf") else -1 
+
+# print(network_delay([[2,1,1],[2,3,1],[3,4,1]], 4, 2))
 
 
 
