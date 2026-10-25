@@ -321,5 +321,3 @@ def valid_paras(s):
 
 
 
-# 
-def 

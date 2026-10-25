@@ -1,6 +1,7 @@
-# global array
+    # global array
 # arr = [1,2,3,5,6,7,8,4]
-# arr = [3,3,4,5,6,6,8,8,9]
+arr = [3,3,4,5,6,6,8,8,9]
+
 
 # Largest element in a array - - - - - - - - - >
 def largest_elem(arr):
@@ -12,7 +13,7 @@ def largest_elem(arr):
             large = arr[i]
     print(large) 
     
-# largest_elem(arr)            
+print(largest_elem(arr))            
 
 
 # second largets element of an array     

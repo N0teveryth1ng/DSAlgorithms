@@ -610,7 +610,7 @@ def network_delay(times, n, k):
     prices = [float("inf")] * (n + 1)
     prices[k] = 0
         
-    for i in range(n - 1):
+    for _ in range(n - 1):
         temp = prices.copy()
         
         for s,d, p in times:
@@ -629,3 +629,7 @@ def network_delay(times, n, k):
 
 
 
+# floyd warshall algo
+def floyd_warshall():
+    
+    for i in range()
