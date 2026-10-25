@@ -1,6 +1,6 @@
     # global array
 # arr = [1,2,3,5,6,7,8,4]
-arr = [3,3,4,5,6,6,8,8,9]
+arr = [3,3,4,5,6,8,8,9]
 
 
 # Largest element in a array - - - - - - - - - >
