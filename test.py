@@ -63,3 +63,178 @@ def remove():
             
             
             
+            
+            
+            
+            
+            
+
+            
+def move_zeroes():
+    
+    insert_pos = 0
+    
+    for i in range(len(arr)):
+        if arr[i] != 0:
+            arr[insert_pos], arr[i] = arr[i], arr[insert_pos]
+            insert_pos += 1
+            
+    return arr
+
+
+
+def rmve_duplicate():
+    
+    i = 0
+    for j in range(1, len(arr)):
+        if arr[i] == arr[j]:
+            arr[i], arr[j] = arr[j], arr[i]
+            i += 1
+            arr[i] = arr[j]
+            
+    return arr[:i+1]
+            
+        
+        
+        
+        
+        
+def move_it():
+    
+    insert_pos = 0
+    
+    for i in range(len(arr)):
+        if arr[i] != 0:
+            arr[i], arr[insert_pos] = arr[insert_pos], arr[i]
+            insert_pos += 1
+            
+    return arr
+# print(move_it())
+
+
+
+
+def remove_copy():
+    
+    i = 0
+    
+    for j in range(1, len(arr)):
+        if arr[i] != arr[j]:
+            arr[i], arr[j] = arr[j], arr[i] 
+            i += 1
+            arr[i] = arr[j]
+            
+    return arr[:i+1]
+
+# print(remove_copy())
+
+
+
+
+# linear search
+def linear_search(arrr, target):
+    
+    for i in range(len(arrr)):
+        if arrr[i] == target:
+            return i
+        
+    return -1
+
+# print(linear_search([1, 2, 2, 3, 2, 4, 1], 4))
+
+
+# check sorted
+def check_sorted(arr):
+
+    
+    for i in range(len(arr) - 1):
+        if arr[i] > arr[i+1]: 
+            return False
+            
+    return True
+
+# print(check_sorted([1, 4, 3, 1, 5]))
+
+
+# find missing nums
+def find_miss(nums, n):
+    
+    expected_sum = n * (n + 1) // 2
+    actual_sum = sum(nums)
+    result = expected_sum - actual_sum    
+        
+    return result
+
+ 
+ 
+#  2 sum
+def two_sum(nums, tagret):
+    
+    for i in range(len(nums)):
+        for j in range(i+1, len(nums)):
+            if nums[i] + nums[j] == tagret:
+                return [i, j]
+            
+    return -1
+
+# print(two_sum([1, 2, 4, 5], 9))
+
+
+
+# 2 sum - optimized hashmap. 
+def two_sum_optimised(nums, target):
+    
+    temp = {}
+    
+    for i, n in enumerate(nums):
+        diff = target - n
+        if diff in temp:
+            return [temp[diff], i]
+        else:
+            temp[n] = i
+    return
+
+# print(two_sum_optimised([1, 2, 4, 5], 9))
+
+
+
+    
+# lC  - 217
+def duplics(nums):
+    
+    seen = set()
+    
+    for i in nums:
+        if i in seen:
+            return True
+        seen.add(i)
+        
+    return False
+
+
+
+# only appears once - lc - 136
+# (brute force approach)
+def appears(nums):
+    
+    count = {}
+    
+    # dump all in dict first
+    for i in nums:
+        if i in count:
+            count[i] += 1
+        else:
+            count[i] = 1
+   
+    # then extarct
+    for i in nums:            
+        if count[i] == 1:
+            return nums[i]
+        
+    return False
+        
+    
+    
+
+
+# 

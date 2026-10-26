@@ -230,6 +230,14 @@ They need to scream:
 
 
 
+
+
+-------------------------------------------------------                ----------------------------------------------------
+
+
+
+
+
 [25/10/1026] 
 - largest, smallest elemt in array
 - reverse an array
@@ -238,4 +246,14 @@ They need to scream:
 - 2nd largest, smallest (had to struggle)
 - 3rd largest, 3rd smallest 
 - move zeroes to end
-- remove duplics 
+- remove duplics  
+
+
+
+
+[26/10/2026]
+- linear search
+- check sorted
+- find missing
+- 2 sum / hashmaps
+- 
