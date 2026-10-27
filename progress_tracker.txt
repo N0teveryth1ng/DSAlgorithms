@@ -256,4 +256,8 @@ They need to scream:
 - check sorted
 - find missing
 - 2 sum / hashmaps
-- 
+-   
+
+
+[27/10/2026]
+- valid anagram

@@ -165,7 +165,7 @@ def find_miss(nums, n):
         
     return result
 
- 
+
  
 #  2 sum
 def two_sum(nums, tagret):
@@ -233,8 +233,86 @@ def appears(nums):
         
     return False
         
+     
     
     
+    
+    
+# valid anagram lc - 242
+# brute force
+def valid_anagram(s,t):
+    
+    temp = {}
+    temp2 = {}
+    
+    # ith one
+    for i in s:
+        if i in temp:
+           temp[i] += 1
+        else:
+            temp[i] = 1
+            
+    # jth one
+    for j in t:
+        if j in temp2:
+            temp2[j] += 1
+        else:
+            temp2[j] = 1
+            
+    # run check 
+    if temp == temp2:
+        return True
+    
+    return False
+              
+    
+# optimised version
+def valid_anagram_optimised(s,t):
+    
+    # run check
+    if len(i) != len(j):
+        return False
+    
+    count = {}
+    
+    # ith one 
+    for i in s:
+        if i in count:
+            count[i] += 1
+        else:
+            count[i] = 1
+            
+    # jth one 
+    for j in t:
+        if j in count:
+            count[j] -= 1
+            if count[j] < 0:  # <-- edge case if less than 0
+                return False
+        else:
+            return False
+            
+    return True
 
 
-# 
+# leetcode- 49
+def grouping(str):
+    
+    count = {}
+    
+    # run a check
+    for word in str:
+        
+        # sorted by default
+        key = "".join(sorted(word))
+        
+        # If key not in count, create an empty key. 
+        if key not in count:
+            count[key] = []
+            
+        # and add to the empty key
+        count[key].append(word)     
+        
+    return list(count.values())
+
+
+
