@@ -260,4 +260,5 @@ They need to scream:
 
 
 [27/10/2026]
-- valid anagram
+- valid anagram - lc 242
+- grouping of anagrams - lc 49
