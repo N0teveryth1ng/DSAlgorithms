@@ -338,5 +338,78 @@ def test(nums, target):
             return [count[diff], i]
         
         count[n] = i
+    return False
             
+    
+    
+    
+    
+# duplics
+def find_duplics(nums):
+    
+    seen = set()     
+    
+    for i in nums:
+        if i in seen:
+            return True
         
+        seen.add(i)
+    return False
+
+
+
+# lc - 125
+def valid_palindrome(str):
+    
+    i = 0
+    j = len(str) - 1
+
+    while i < j:
+        
+        if not str[i].isalnum():
+            i += 1
+        elif not str[j].isalnum():
+            j -= 1
+        elif str[i].lower() != str[j].lower():
+            return False
+        else:
+            i += 1
+            j -= 1
+        
+    return True  
+
+
+
+
+# 2 sum - II
+def test(target, nums):
+    
+    count = {}
+    
+    for i,n in enumerate(len(nums)):
+        diff = target - n
+        if diff in count:
+            return [count[diff], i]
+        
+        count[n] = i
+        
+    
+# lc - 167
+def two_sum_II(target, nums):
+    
+    i = 0
+    j = len(nums) - 1
+    
+    while i < j:
+        sums = nums[i] + nums[j]
+   
+        if sums == target:
+            return [i + 1, j + 1]
+        elif sums < target:
+            i += 1
+        elif sums > target:
+            j -= 1
+            
+    return []
+
+
