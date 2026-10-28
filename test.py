@@ -443,5 +443,93 @@ def three_sum(nums, target):
 
 
 
+# binary search - lc - 704
+def search(nums, target):
+    
+    left = 0
+    right = len(nums) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2 
+        
+        if nums[mid] == target:
+            return mid 
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+            
+    return -1
 
-# 
+# print(search([-1, 0, 3, 5, 9, 12], 9))
+
+
+
+
+# lc - 35
+def insert_pos(nums, target):
+    
+    left = 0
+    right = len(nums) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+            
+    return left
+
+
+
+# lc - 34
+def lc_34(nums, target):
+    
+    def first():
+        left = 0
+        right = len(nums) - 1
+        res = -1
+        
+        while left <= right:
+            
+            mid = (left + right) // 2
+            
+            if nums[mid] == target:
+                res = mid
+                right = mid - 1
+                
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+                
+        return res
+            
+            
+    def last():
+        left = 0
+        right = len(nums) - 1
+        res = -1
+        
+        while left <= right:
+            
+            mid = (left + right) // 2
+            
+            if nums[mid] == target:
+                res = mid
+                left = mid + 1
+                
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+                
+        return res
+    
+    return [first(), last()] 
+        
+        
