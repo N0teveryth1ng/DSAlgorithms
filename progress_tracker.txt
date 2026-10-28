@@ -269,3 +269,4 @@ They need to scream:
 - validate duplics
 - valid palindrome lc 125
 - 2 sum II - lc 167
+- 3 sum - lc 15
