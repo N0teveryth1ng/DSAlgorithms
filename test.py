@@ -533,3 +533,8 @@ def lc_34(nums, target):
     return [first(), last()] 
         
         
+
+
+
+
+# 
