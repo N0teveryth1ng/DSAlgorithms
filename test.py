@@ -537,4 +537,90 @@ def lc_34(nums, target):
 
 
 
-# 
+# lc - 704
+def binary(nums, target):
+    
+    left = 0
+    right = len(nums) - 1
+    
+    while left <= right:
+        
+        mid = (left + right) // 2
+        
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+            
+    return -1
+
+
+
+# search insert pos
+def search_insert(nums, target):
+    
+    left = 0
+    right = len(nums) - 1
+    
+    while left <= right:
+        
+        mid = (left + right) // 2
+        
+        if nums[mid] == target:
+            return mid
+        
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+            
+    return left
+
+
+
+
+
+def test(nums, target):
+    
+    def first():
+        
+        left, right = 0, len(nums) - 1
+        res = -1
+        while left <= right:
+            
+            mid = (left + right) // 2
+            
+            if nums[mid] == target:
+                res = mid
+                right = mid - 1
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+            
+        return res
+
+
+
+    def last():
+        left, right = 0, len(nums) - 1
+        res = -1
+        
+        
+        while left <= right:            
+            mid = (left + right) // 2
+            
+            if nums[mid] == target:
+                res = mid
+                left  = mid + 1
+            elif nums[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+                
+        return res
+        
+    return [first(), last()]
+

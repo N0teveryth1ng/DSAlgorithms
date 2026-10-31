@@ -270,3 +270,5 @@ They need to scream:
 - valid palindrome lc 125
 - 2 sum II - lc 167
 - 3 sum - lc 15
+- lc 704, lc - 35
+- lc 34
